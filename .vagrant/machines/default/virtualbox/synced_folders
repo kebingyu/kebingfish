@@ -1,0 +1,1 @@
+{"virtualbox":{"/home/vagrant/kebingfish":{"type":null,"mount_options":[],"guestpath":"/home/vagrant/kebingfish","hostpath":"/private/var/www/sites/kebingfish","disabled":false,"__vagrantfile":true},"/vagrant":{"guestpath":"/vagrant","hostpath":"/private/var/www/sites/kebingfish","disabled":false,"__vagrantfile":true}}}
