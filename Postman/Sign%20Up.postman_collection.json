@@ -1,0 +1,97 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Sign Up",
+		"_postman_id": "e562bc37-ae51-9932-7201-8a85156f317e",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Event",
+			"description": "",
+			"item": [
+				{
+					"name": "List all events",
+					"request": {
+						"url": "{{base}}/api/signup.events",
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Get an event",
+					"request": {
+						"url": "{{base}}/api/signup.events/1",
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Delete an event",
+					"request": {
+						"url": "{{base}}/api/signup.events/1",
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Add an event",
+					"request": {
+						"url": "{{base}}/api/signup.events",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "title",
+									"value": "Friday worship",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "description",
+									"value": "worship gathering",
+									"type": "text",
+									"enabled": true
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"description": "",
+			"item": []
+		}
+	]
+}
