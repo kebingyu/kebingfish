@@ -16,3 +16,22 @@ use Illuminate\Http\Request;
 Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:api');
+
+Route::group(['prefix' => '/signup.events'], function () {
+    Route::get('/', [
+        'uses' => 'Signup\EventController@events',
+        'as' => 'signup.events.all',
+    ]);
+    Route::get('/{event}', [
+        'uses' => 'Signup\EventController@event',
+        'as' => 'signup.event.read',
+    ]);
+    Route::post('/', [
+        'uses' => 'Signup\EventController@add',
+        'as' => 'signup.events.add',
+    ]);
+    Route::delete('/{event}', [
+        'uses' => 'Signup\EventController@delete',
+        'as' => 'signup.event.delete',
+    ]);
+});

@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Event;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
@@ -23,7 +24,9 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        Route::bind('event', function ($id) {
+            return Event::find($id);
+        });
 
         parent::boot();
     }
