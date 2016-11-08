@@ -14,3 +14,9 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::group(['prefix' => '/signup/events'], function () {
+    Route::get('/', [
+        'uses' => 'Signup\SignupController@events',
+        'as' => 'signup.events.all',
+    ]);
+});
