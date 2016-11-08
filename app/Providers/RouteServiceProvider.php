@@ -2,7 +2,8 @@
 
 namespace App\Providers;
 
-use App\Event;
+use App\Models\Signup\Event;
+use App\Models\Signup\User;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
@@ -25,7 +26,10 @@ class RouteServiceProvider extends ServiceProvider
     public function boot()
     {
         Route::bind('event', function ($id) {
-            return Event::find($id);
+            return Event::with('users')->find($id);
+        });
+        Route::bind('eventUser', function ($name) {
+            return User::where('name', $name)->firstOrFail();
         });
 
         parent::boot();

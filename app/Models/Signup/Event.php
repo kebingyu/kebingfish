@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models\Signup;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -15,4 +15,9 @@ class Event extends Model
         'updated_at',
         'expires_at',
     ];
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'signup_event_user', 'event_id', 'user_id');
+    }
 }
