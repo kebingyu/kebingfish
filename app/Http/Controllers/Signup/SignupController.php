@@ -20,4 +20,20 @@ class SignupController extends Controller
     {
         return $this->client->getAllEvents();
     }
+
+    public function event(Request $request, string $eventId)
+    {
+        $event = $this->client->getEvent($eventId);
+        $counter = 0;
+        return view('signup/event', [
+            'title' => 'Event: ' . $event['data']['title'],
+            'description' => $event['data']['description'],
+            'users' => array_map(function ($user) use (&$counter) {
+                return [
+                    'id' => ++$counter,
+                    'name' => $user['name'],
+                ];
+            }, $event['data']['users']),
+        ]);
+    }
 }

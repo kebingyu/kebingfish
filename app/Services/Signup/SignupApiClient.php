@@ -19,6 +19,11 @@ class SignupApiClient
         return $this->request('GET', route('api.signup.events.all'));
     }
 
+    public function getEvent(string $eventId)
+    {
+        return $this->request('GET', route('api.signup.event.read', ['eventId' => $eventId]));
+    }
+
     protected function request(string $method, string $uri, array $options = [])
     {
         $response = $this->client->request($method, $uri, $options);
