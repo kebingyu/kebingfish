@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Signup;
 use App\Http\Controllers\Controller;
 use App\Services\Signup\SignupApiClient;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class SignupController extends Controller
 {
@@ -30,10 +31,12 @@ class SignupController extends Controller
 
     protected function getEventsBladeData(array $event)
     {
+        $expiresIn = Carbon::parse($event['expires_at'])->diffForHumans();
         return [
-            'title' => $this->getEventTitleHref($event),
-            'description' => $event['description'],
-            'userCount' => count($event['users']),
+            'Title' => $this->getEventTitleHref($event),
+            'Description' => $event['description'],
+            'User Count' => count($event['users']),
+            'Expires In' => $expiresIn,
         ];
     }
 
@@ -53,10 +56,12 @@ class SignupController extends Controller
 
     protected function getEventBladeData(array $event)
     {
+        $expire = Carbon::parse($event['expires_at'])->format('l, F d Y');
         return [
             'title' => $event['title'],
             'description' => $event['description'],
             'users' => $this->usersToTableRows($event['users']),
+            'expire' => "This event expires on {$expire}",
         ];
     }
 

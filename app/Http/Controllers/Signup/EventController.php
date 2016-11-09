@@ -17,7 +17,10 @@ class EventController extends Controller
      */
     public function events()
     {
-        $events = Event::with('users')->get();
+        // Only show events not expired
+        $events = Event::with('users')->get()->filter(function ($event) {
+            return Carbon::now()->lte(Carbon::parse($event['expires_at']));
+        });
         return $this->responseJson(true, [
             'data' => $events->map(function ($event) {
                 return $event->toArray();
@@ -49,15 +52,19 @@ class EventController extends Controller
      */
     public function add(EventRequest $request)
     {
-        if (!$request->has('expires_at')) {
-            $request->merge([
-                'expires_at' => Carbon::now()->addWeek()->timestamp,
-            ]);
-        }
+        $request->merge(['expires_at' => $this->getExpireTimestamp($request)]);
         $event = Event::create($request->all());
         return $this->responseJson(true, [
             'data' => $event->toArray(),
         ]);
+    }
+
+    protected function getExpireTimestamp(EventRequest $request)
+    {
+        if (!$request->has('expires_at')) {
+            return Carbon::now()->addWeek()->timestamp;
+        }
+        return Carbon::parse($request->get('expires_at'))->timestamp;
     }
 
     /**

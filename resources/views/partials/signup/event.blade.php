@@ -1,6 +1,6 @@
 <div>
 <?php
-echo Panel::normal()->withHeader($title)->withBody($description);
+echo Panel::normal()->withHeader($title)->withBody($description)->withFooter($expire);
 echo Form::open(['url' => $url]);
 echo Form::label('name', 'Signup here!');
 echo InputGroup::withContents(Form::text('name'))->appendButton(Button::primary('Submit')->submit());
