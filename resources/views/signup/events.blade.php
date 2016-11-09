@@ -14,7 +14,7 @@
             'input' => ['type' => 'text', 'description', '']
         ],
         [
-            'input' => ['type' => 'submit', 'submit']
+            'input' => ['type' => 'submit', 'Submit']
         ],
     ]);
     echo Form::close();

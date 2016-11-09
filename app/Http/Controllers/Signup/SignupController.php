@@ -47,6 +47,7 @@ class SignupController extends Controller
         $event = $this->client->getEvent($eventId);
         return view('signup/event', [
             'pageTitle' => 'Event: ' . $event['title'],
+            'url' => $this->client->getApiRouteEventUserCreate($event['id']),
         ] + $this->getEventBladeData($event));
     }
 

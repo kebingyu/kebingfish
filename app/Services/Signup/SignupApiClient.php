@@ -49,6 +49,11 @@ class SignupApiClient
         return route('signup.event.read', ['eventId' => $eventId]);
     }
 
+    public function getApiRouteEventUserCreate($eventId)
+    {
+        return route('api.signup.event.user.create', ['event' => $eventId]);
+    }
+
     protected function request(string $method, string $uri, array $options = [])
     {
         $response = $this->client->request($method, $uri, $options);
