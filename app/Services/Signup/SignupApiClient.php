@@ -27,6 +27,10 @@ class SignupApiClient
     protected function request(string $method, string $uri, array $options = [])
     {
         $response = $this->client->request($method, $uri, $options);
-        return json_decode($response->getBody(), true);
+        $result = json_decode($response->getBody(), true);
+        if ($result['ok']) {
+            return $result['data'];
+        }
+        return false;
     }
 }

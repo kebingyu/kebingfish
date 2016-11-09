@@ -18,22 +18,40 @@ class SignupController extends Controller
 
     public function events(Request $request)
     {
-        return $this->client->getAllEvents();
+        $events = array_map(function ($event) {
+            return $this->getEventBladeData($event);
+        }, $this->client->getAllEvents());
+        return view('signup/events', [
+            'pageTitle' => 'All Events',
+            'events' => $events,
+        ]);
     }
 
     public function event(Request $request, string $eventId)
     {
         $event = $this->client->getEvent($eventId);
-        $counter = 0;
         return view('signup/event', [
-            'title' => 'Event: ' . $event['data']['title'],
-            'description' => $event['data']['description'],
-            'users' => array_map(function ($user) use (&$counter) {
-                return [
-                    'id' => ++$counter,
-                    'name' => $user['name'],
-                ];
-            }, $event['data']['users']),
-        ]);
+            'pageTitle' => 'Event: ' . $event['title'],
+        ] + $this->getEventBladeData($event));
+    }
+
+    protected function getEventBladeData(array $event)
+    {
+        return [
+            'title' => $event['title'],
+            'description' => $event['description'],
+            'users' => $this->usersToTableRows($event['users']),
+        ];
+    }
+
+    protected function usersToTableRows(array $users)
+    {
+        $counter = 0;
+        return array_map(function ($user) use (&$counter) {
+            return [
+                '#' => ++$counter,
+                'name' => $user['name'],
+            ];
+        }, $users);
     }
 }
