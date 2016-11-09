@@ -17,7 +17,7 @@ class CreateEventsTable extends Migration
             $table->increments('id');
             $table->tinyInteger('type')->default(1);
             $table->string('title', 255);
-            $table->string('description', 255);
+            $table->string('description', 255)->nullable();
             $table->timestamps();
             $table->timestamp('expires_at')->nullable();
         });

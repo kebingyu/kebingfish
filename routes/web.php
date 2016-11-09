@@ -17,7 +17,7 @@ Route::get('/', function () {
 Route::group(['prefix' => '/signup/events'], function () {
     Route::get('/', [
         'uses' => 'Signup\SignupController@events',
-        'as' => 'signup.events.all',
+        'as' => 'signup.events.read',
     ]);
     Route::get('/{eventId}', [
         'uses' => 'Signup\SignupController@event',

@@ -2,13 +2,23 @@
 <html lang="en">
     @include('partials/signup/header')
     <body>
-    @foreach ($events as $event)
-        @include('partials/signup/event', [
-            'title' => $event['title'],
-            'description' => $event['description'],
-            'users' => $event['users'],
-        ])
-    @endforeach
+    <?php
+    echo Table::withContents($events)->bordered();
+    echo Form::open(['url' => $url]);
+    echo ControlGroup::generate(Form::label('title', 'Title'), [
+        [
+            'input' => ['type' => 'text', 'title', '']
+        ],
+        [
+            'label' => ['description', 'Description'],
+            'input' => ['type' => 'text', 'description', '']
+        ],
+        [
+            'input' => ['type' => 'submit', 'submit']
+        ],
+    ]);
+    echo Form::close();
+    ?>
     @include('partials/signup/footer')
     </body>
 </html>

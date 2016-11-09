@@ -21,7 +21,7 @@ Route::group(['prefix' => '/signup.events'], function () {
     // Events
     Route::get('/', [
         'uses' => 'Signup\EventController@events',
-        'as' => 'api.signup.events.all',
+        'as' => 'api.signup.events.read',
     ]);
     Route::get('/{event}', [
         'uses' => 'Signup\EventController@event',
@@ -29,7 +29,7 @@ Route::group(['prefix' => '/signup.events'], function () {
     ]);
     Route::post('/', [
         'uses' => 'Signup\EventController@add',
-        'as' => 'api.signup.events.add',
+        'as' => 'api.signup.events.create',
     ]);
     Route::delete('/{event}', [
         'uses' => 'Signup\EventController@delete',
@@ -38,7 +38,7 @@ Route::group(['prefix' => '/signup.events'], function () {
     // Users
     Route::post('/{event}/users', [
         'uses' => 'Signup\EventUserController@add',
-        'as' => 'api.signup.event.user.add',
+        'as' => 'api.signup.event.user.create',
     ]);
     Route::delete('/{event}/users/{eventUser}', [
         'uses' => 'Signup\EventUserController@delete',
