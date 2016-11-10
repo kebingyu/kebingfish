@@ -60,6 +60,7 @@ class SignupController extends Controller
         return view('signup/event', [
             'pageTitle' => 'Event: ' . $event['title'],
             'url' => $this->client->getApiRouteEventUserCreate($event['id']),
+            'goerCount' => $event['goer_count'],
         ] + $this->getEventBladeData($event));
     }
 
@@ -78,7 +79,8 @@ class SignupController extends Controller
     {
         return array_map(function ($user) use ($eventId) {
             return [
-                'name' => $this->getUserNameHref($eventId, $user),
+                'Name' => $this->getUserNameHref($eventId, $user),
+                'Group size' => $user['pivot']['group_size'],
             ];
         }, $users);
     }

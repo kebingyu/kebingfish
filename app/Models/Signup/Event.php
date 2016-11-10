@@ -11,6 +11,8 @@ class Event extends Model
 
     protected $fillable = ['type', 'title', 'description', 'expires_at'];
 
+    protected $hidden = ['created_at', 'updated_at'];
+
     protected $dates = [
         'created_at',
         'updated_at',

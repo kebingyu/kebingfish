@@ -10,6 +10,8 @@ class User extends Model
 
     protected $fillable = ['name'];
 
+    protected $hidden = ['created_at', 'updated_at'];
+
     public function events()
     {
         return $this->belongsToMany(Event::class, 'signup_event_user', 'event_id', 'user_id')
