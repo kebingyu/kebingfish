@@ -37,16 +37,15 @@ class SignupController extends Controller
     protected function getEventsBladeData(array $event)
     {
         return [
-            'Title' => $this->getEventTitleHref($event),
-            'Description' => $event['description'],
-            'Goer Count' => $event['goer_count'],
-            'Expires In' => $event['expires_in'],
+            'title' => $event['title'],
+            'href' => $this->getEventTitleHref($event),
+            'count' => $event['goer_count'],
         ];
     }
 
     protected function getEventTitleHref(array $event)
     {
-        return "<a href=\"{$this->client->getWebRouteEventRead($event['id'])}\">{$event['title']}</a>";
+        return $this->client->getWebRouteEventRead($event['id']);
     }
 
     /**

@@ -3,8 +3,13 @@
     <head>
         @include('partials/signup/header')
     </head>
-    <body>
-        @include('partials/signup/event')
+    <body class="signup signup-events">
+        @include('partials/signup/nav')
+        <div class="container" role="main">
+            <div class="row">
+            @include('partials/signup/event')
+            </div>
+        </div>
         @include('partials/signup/footer')
         <script src="/js/signup.event.js"></script>
     </body>
