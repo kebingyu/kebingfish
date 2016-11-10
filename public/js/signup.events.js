@@ -13,18 +13,18 @@ $(document).ready(function () {
             data: self.serialize()
         }).done(function (data) {
             if (data['ok']) {
-                var elem = $('.table-bordered tr:last');
+                var elem = $('.event-list li:last');
                 if (elem.length == 0) {
                     return window.location.reload(true);
                 }
                 data = data['data'];
                 url = 'http://' + window.location.hostname + '/signup/events/';
-                var html = '<tr>'
-                    + '<td class=""><a href="' + url + data['id'] + '">' + data['title'] + '</a></td>'
-                    + '<td class="">' + data['description'] + '</td>'
-                    + '<td>0</td>'
-                    + '<td>' + data['expires_in'] + '</td>'
-                    + '</tr>';
+                var html = '<li class="list-group-item">'
+                    + '<a href="' + url + data['id'] + '">' + data['title']
+                    + '<span class="badge goer-count">0</span>'
+                    + '<span class="glyphicon glyphicon-chevron-right pull-right"></span>'
+                    + '</a>'
+                    + '</li>';
                 return elem.after(html);
             }
             alert(data['error']);
