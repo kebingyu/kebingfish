@@ -36,12 +36,11 @@ class SignupController extends Controller
 
     protected function getEventsBladeData(array $event)
     {
-        $expiresIn = Carbon::parse($event['expires_at'])->diffForHumans();
         return [
             'Title' => $this->getEventTitleHref($event),
             'Description' => $event['description'],
             'User Count' => count($event['users']),
-            'Expires In' => $expiresIn,
+            'Expires In' => $event['expires_in'],
         ];
     }
 

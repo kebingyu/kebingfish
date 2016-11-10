@@ -7,7 +7,7 @@
     <body>
         <?php
         echo Table::withContents($events)->bordered();
-        echo Form::open(['url' => $url]);
+        echo Form::open(['url' => $url, 'class' => 'create-event']);
         echo ControlGroup::generate(Form::label('title', 'Title'), [
             [
                 'input' => ['type' => 'text', 'title', '']

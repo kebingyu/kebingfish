@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    $('.user-name').on('click', function (e) {
+    $('.table-striped').on('click', '.user-name', function (e) {
         e.preventDefault();
         var self = $(this);
         $.ajax({
@@ -15,7 +15,7 @@ $(document).ready(function () {
         });
     });
 
-    $('.signup').submit(function (e) {
+    $('form.signup').submit(function (e) {
         e.preventDefault();
         var self = $(this);
         var url = self.attr('action');
