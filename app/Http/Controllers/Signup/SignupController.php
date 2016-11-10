@@ -39,7 +39,7 @@ class SignupController extends Controller
         return [
             'Title' => $this->getEventTitleHref($event),
             'Description' => $event['description'],
-            'User Count' => count($event['users']),
+            'Goer Count' => $event['goer_count'],
             'Expires In' => $event['expires_in'],
         ];
     }

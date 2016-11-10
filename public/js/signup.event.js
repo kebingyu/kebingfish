@@ -1,4 +1,5 @@
 $(document).ready(function () {
+    // Remove user from signup list
     $('.table-striped').on('click', '.user-name', function (e) {
         e.preventDefault();
         var self = $(this);
@@ -10,6 +11,9 @@ $(document).ready(function () {
             method: "DELETE"
         }).done(function (data) {
             if (data['ok']) {
+                // Update goer count
+                $('.badge').text(data['data']['goer_count']);
+                // Remove table row
                 return self.parent().fadeOut(300, function() {
                     $(this).remove();
                 });
@@ -18,6 +22,7 @@ $(document).ready(function () {
         });
     });
 
+    // Add user from signup list
     $('form.signup').submit(function (e) {
         e.preventDefault();
         var self = $(this);
@@ -32,10 +37,16 @@ $(document).ready(function () {
                 if (elem.length == 0) {
                     return window.location.reload(true);
                 }
+                // Update goer count
+                $('.badge').text(data['data']['goer_count']);
+                // Append table row
+                var name = self.find('input[name="name"]').val();
+                var size = self.find('input[name="group_size"]').val() || 1;
                 var html = '<tr>'
                     + '<td class="user-name">'
-                    + '<a href="' + url + '/' + data['data']['name'] + '">' + data['data']['name'] + '</a>'
+                    + '<a href="' + url + '/' + name + '">' + name + '</a>'
                     + '</td>'
+                    + '<td class="user-group-size">' + size + '</td>'
                     + '</tr>';
                 return elem.after(html);
             }

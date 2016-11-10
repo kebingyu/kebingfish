@@ -23,9 +23,11 @@ class EventUserController extends Controller
     {
         $user = $this->findUser($request->get('name'));
         if (!$this->userhasSignedUp($event, $user->id)) {
-            $event->users()->attach($user->id);
+            $event->users()->attach($user->id, [
+                'group_size' => $this->getGroupSize($request),
+            ]);
             return $this->responseJson(true, [
-                'data' => $user->toArray(),
+                'data' => Event::find($event->id)->toArray(),
             ]);
         }
 
@@ -46,7 +48,9 @@ class EventUserController extends Controller
     {
         if ($this->userhasSignedUp($event, $user->id)) {
             $event->users()->detach($user->id);
-            return $this->responseJson(true);
+            return $this->responseJson(true, [
+                'data' => Event::find($event->id)->toArray(),
+            ]);
         }
 
         return $this->responseJson(false, [
@@ -79,5 +83,13 @@ class EventUserController extends Controller
         return is_numeric($event->users()->get()->search(function ($user, $key) use ($userId) {
             return $user->id == $userId;
         }));
+    }
+
+    protected function getGroupSize(UserRequest $request)
+    {
+        if ($request->has('group_size')) {
+            return $request->get('group_size');
+        }
+        return 1;
     }
 }

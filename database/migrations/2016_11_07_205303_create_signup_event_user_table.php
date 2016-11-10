@@ -17,7 +17,7 @@ class CreateSignupEventUserTable extends Migration
             $table->increments('id');
             $table->integer('event_id');
             $table->integer('user_id');
-            $table->timestamps();
+            $table->tinyInteger('group_size')->default(1);
             $table->foreign('event_id')->references('id')->on('signup_events');
             $table->foreign('user_id')->references('id')->on('signup_users');
         });

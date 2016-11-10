@@ -19,14 +19,24 @@ class Event extends Model
 
     public function users()
     {
-        return $this->belongsToMany(User::class, 'signup_event_user', 'event_id', 'user_id');
+        return $this->belongsToMany(User::class, 'signup_event_user', 'event_id', 'user_id')
+            ->withPivot('group_size');
     }
 
     public function toArray()
     {
-        $data = parent::toArray();
-        return $data + [
-            'expires_in' => Carbon::parse($data['expires_at'])->diffForHumans(),
+        return parent::toArray() + [
+            'expires_in' => Carbon::parse($this->expires_at)->diffForHumans(),
+            'goer_count' => $this->getGoerCount(),
         ];
+    }
+
+    protected function getGoerCount()
+    {
+        $count = 0;
+        foreach ($this->users as $user) {
+            $count += $user->pivot->group_size;
+        }
+        return $count;
     }
 }
