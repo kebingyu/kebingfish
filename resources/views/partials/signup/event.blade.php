@@ -7,7 +7,6 @@ echo InputGroup::withContents(Form::text('name'))->appendButton(Button::primary(
 echo Form::close();
 echo Table::withContents($users)
     ->striped()
-    ->withClassOnCellsInColumn('#', 'user-count')
     ->withClassOnCellsInColumn('name', 'user-name');
 ?>
 </div>

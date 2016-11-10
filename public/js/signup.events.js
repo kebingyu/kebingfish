@@ -14,6 +14,9 @@ $(document).ready(function () {
         }).done(function (data) {
             if (data['ok']) {
                 var elem = $('.table-bordered tr:last');
+                if (elem.length == 0) {
+                    return window.location.reload(true);
+                }
                 data = data['data'];
                 url = 'http://' + window.location.hostname + '/signup/events/';
                 var html = '<tr>'

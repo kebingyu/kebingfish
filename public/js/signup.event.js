@@ -2,6 +2,9 @@ $(document).ready(function () {
     $('.table-striped').on('click', '.user-name', function (e) {
         e.preventDefault();
         var self = $(this);
+        if (!confirm('Remove ' + self.find('a').text() + ' from this event?')) {
+            return;
+        }
         $.ajax({
             url: self.find('a').attr('href'),
             method: "DELETE"
@@ -26,10 +29,13 @@ $(document).ready(function () {
         }).done(function (data) {
             if (data['ok']) {
                 var elem = $('.table-striped tr:last');
-                var count = parseInt(elem.find('td.user-count').html()) + 1;
+                if (elem.length == 0) {
+                    return window.location.reload(true);
+                }
                 var html = '<tr>'
-                    + '<td class="user-count">' + count + '</td>'
-                    + '<td class="user-name"><a href="' + url + '/' + data['data']['name'] + '">' + data['data']['name'] + '</a></td>'
+                    + '<td class="user-name">'
+                    + '<a href="' + url + '/' + data['data']['name'] + '">' + data['data']['name'] + '</a>'
+                    + '</td>'
                     + '</tr>';
                 return elem.after(html);
             }

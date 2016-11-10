@@ -76,10 +76,8 @@ class SignupController extends Controller
 
     protected function usersToTableRows($eventId, array $users)
     {
-        $counter = 0;
-        return array_map(function ($user) use (&$counter, $eventId) {
+        return array_map(function ($user) use ($eventId) {
             return [
-                '#' => ++$counter,
                 'name' => $this->getUserNameHref($eventId, $user),
             ];
         }, $users);
