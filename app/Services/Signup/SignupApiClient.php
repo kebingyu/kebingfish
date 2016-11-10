@@ -54,6 +54,14 @@ class SignupApiClient
         return route('api.signup.event.user.create', ['event' => $eventId]);
     }
 
+    public function getApiRouteEventUserDelete($eventId, $userName)
+    {
+        return route('api.signup.event.user.delete', [
+            'event' => $eventId,
+            'eventUser' => $userName,
+        ]);
+    }
+
     protected function request(string $method, string $uri, array $options = [])
     {
         $response = $this->client->request($method, $uri, $options);

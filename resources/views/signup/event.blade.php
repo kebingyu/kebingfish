@@ -6,5 +6,6 @@
     <body>
         @include('partials/signup/event')
         @include('partials/signup/footer')
+        <script src="/js/signup.event.js"></script>
     </body>
 </html>

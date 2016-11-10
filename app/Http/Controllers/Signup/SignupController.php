@@ -17,6 +17,11 @@ class SignupController extends Controller
         $this->client = $client;
     }
 
+    /**
+     * Show all active events.
+     *
+     * @param Request $request
+     */
     public function events(Request $request)
     {
         $events = array_map(function ($event) {
@@ -45,6 +50,11 @@ class SignupController extends Controller
         return "<a href=\"{$this->client->getWebRouteEventRead($event['id'])}\">{$event['title']}</a>";
     }
 
+    /**
+     * Show one events.
+     *
+     * @param Request $request
+     */
     public function event(Request $request, string $eventId)
     {
         $event = $this->client->getEvent($eventId);
@@ -60,19 +70,24 @@ class SignupController extends Controller
         return [
             'title' => $event['title'],
             'description' => $event['description'],
-            'users' => $this->usersToTableRows($event['users']),
+            'users' => $this->usersToTableRows($event['id'], $event['users']),
             'expire' => "This event expires on {$expire}",
         ];
     }
 
-    protected function usersToTableRows(array $users)
+    protected function usersToTableRows($eventId, array $users)
     {
         $counter = 0;
-        return array_map(function ($user) use (&$counter) {
+        return array_map(function ($user) use (&$counter, $eventId) {
             return [
                 '#' => ++$counter,
-                'name' => $user['name'],
+                'name' => $this->getUserNameHref($eventId, $user),
             ];
         }, $users);
+    }
+
+    protected function getUserNameHref($eventId, array $user)
+    {
+        return "<a href=\"{$this->client->getApiRouteEventUserDelete($eventId, $user['name'])}\">{$user['name']}</a>";
     }
 }
