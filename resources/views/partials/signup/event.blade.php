@@ -33,11 +33,16 @@
         </form>
     </div>
     <div class="table-responsive">
-        <?php
-        echo Table::withContents($users)
-            ->striped()
-            ->withClassOnCellsInColumn('Name', 'user-name')
-            ->withClassOnCellsInColumn('Group size', 'user-group-size');
-        ?>
+        <table class="table table-striped">
+            <thead><tr><th class="user-name">Name</th><th class="user-group-size">Group size</th></tr></thead>
+            <tbody>
+                @foreach ($users as $user)
+                    <tr>
+                        <td class="user-name"><a href="{{ $user['href'] }}">{{ $user['name'] }}</a></td>
+                        <td class="user-group-size">{{ $user['group_size'] }}</td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
     </div>
 </div>

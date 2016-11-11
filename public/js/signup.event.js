@@ -48,10 +48,7 @@ $(document).ready(function () {
             }
         }).done(function (data) {
             if (data['ok']) {
-                var elem = $('.table-striped tr:last');
-                if (elem.length == 0) {
-                    return window.location.reload(true);
-                }
+                var elem = $('.table-striped tbody');
                 // Update goer count
                 $('.badge').text(data['data']['goer_count']);
                 // Append table row
@@ -63,7 +60,7 @@ $(document).ready(function () {
                     + '</td>'
                     + '<td class="user-group-size">' + size + '</td>'
                     + '</tr>';
-                elem.after(html);
+                elem.append(html);
                 // Popup message
                 showModal(name + '\'s group has been added.');
                 return;

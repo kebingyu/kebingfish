@@ -78,14 +78,15 @@ class SignupController extends Controller
     {
         return array_map(function ($user) use ($eventId) {
             return [
-                'Name' => $this->getUserNameHref($eventId, $user),
-                'Group size' => $user['pivot']['group_size'],
+                'name' => $user['name'],
+                'href' => $this->getUserNameHref($eventId, $user),
+                'group_size' => $user['pivot']['group_size'],
             ];
         }, $users);
     }
 
     protected function getUserNameHref($eventId, array $user)
     {
-        return "<a href=\"{$this->client->getApiRouteEventUserDelete($eventId, $user['name'])}\">{$user['name']}</a>";
+        return $this->client->getApiRouteEventUserDelete($eventId, $user['name']);
     }
 }
