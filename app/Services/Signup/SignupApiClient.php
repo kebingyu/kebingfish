@@ -3,6 +3,7 @@
 namespace App\Services\Signup;
 
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\RequestException;
 
 class SignupApiClient
 {
@@ -64,11 +65,16 @@ class SignupApiClient
 
     protected function request(string $method, string $uri, array $options = [])
     {
-        $response = $this->client->request($method, $uri, $options);
-        $result = json_decode($response->getBody(), true);
-        if ($result['ok']) {
-            return $result['data'];
+        try {
+            $response = $this->client->request($method, $uri, $options);
+            $result = json_decode($response->getBody(), true);
+            if ($result['ok']) {
+                return $result['data'];
+            }
+            return false;
+        } catch (RequestException $e) {
+            // Simply go 404
+            abort(404);
         }
-        return false;
     }
 }

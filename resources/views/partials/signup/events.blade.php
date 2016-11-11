@@ -16,7 +16,7 @@
         <div class="form-title">Create a new event!</div>
         <form class="form-horizontal create-event" method="POST" action="{{ $url }}" accept-charset="UTF-8">
           <div class="form-group create-event-title">
-            <label for="title" class="col-sm-3 control-label">Title</label>
+            <label for="title" class="col-sm-3 control-label">Title *</label>
             <div class="col-sm-9">
               <input type="text" class="form-control" id="title" name="title" placeholder="Enter event title...">
             </div>
@@ -31,7 +31,7 @@
             <ul class="error-block"></ul>
           </div>
           <div class="form-group create-event-expires-at">
-            <label for="expires_at" class="col-sm-3 control-label">Pick a date</label>
+            <label for="expires_at" class="col-sm-3 control-label">Pick a date *</label>
             <div class="col-sm-9">
               <input type="text" class="form-control" id="expires_at" name="expires_at" placeholder="Pick a date...">
             </div>

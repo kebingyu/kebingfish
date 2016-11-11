@@ -12,7 +12,7 @@
         <div class="form-title">Sign me up!</div>
         <form class="form-horizontal signup" method="POST" action="{{ $url }}" accept-charset="UTF-8">
           <div class="form-group">
-            <label for="name" class="col-sm-4 control-label">Name</label>
+            <label for="name" class="col-sm-4 control-label">Name *</label>
             <div class="col-sm-8">
               <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name...">
             </div>
