@@ -15,6 +15,7 @@ $(document).ready(function () {
                 var div = self.find('.has-error');
                 div.find('.error-block').html('');
                 div.removeClass('has-error');
+                resetModal();
             }
         }).done(function (data) {
             if (data['ok']) {
@@ -30,19 +31,36 @@ $(document).ready(function () {
                     + '<span class="glyphicon glyphicon-chevron-right pull-right"></span>'
                     + '</a>'
                     + '</li>';
-                return elem.after(html);
+                elem.after(html);
+                // Popup message
+                showModal('Event added.');
+                return;
             }
+            // Popup message
+            showModal(data['error'], 'danger');
         }).fail(function (data) {
             var error = data.responseJSON;
             for (var key in error) {
                 var div = $('input[name="' + key + '"]').parents('.form-group');
                 var ul = div.find('.error-block');
                 for (var i = 0, j = error[key].length; i < j; i++) {
-                    var html = '<li>' + error[key][i] + '</li>';
+                    var html = '<li class="text-danger">' + error[key][i] + '</li>';
                     ul.append(html);
                 }
                 div.addClass('has-error');
             }
         });
     });
+
+    function resetModal() {
+        $('#signup-message')
+        .find('.text-success').html('')
+        .end().find('.text-danger').html('');
+    }
+
+    function showModal(message, type) {
+        var type = type || 'success';
+        var elem = '.text-' + type;
+        $('#signup-message').find(elem).html(message).end().modal();
+    }
 });

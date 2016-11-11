@@ -3,22 +3,30 @@ $(document).ready(function () {
     $('.table-striped').on('click', '.user-name', function (e) {
         e.preventDefault();
         var self = $(this);
-        if (!confirm('Remove ' + self.find('a').text() + ' from this event?')) {
+        var name = self.find('a').text();
+        if (!confirm('Remove ' + name + ' from this event?')) {
             return;
         }
         $.ajax({
             url: self.find('a').attr('href'),
-            method: "DELETE"
+            method: "DELETE",
+            beforeSend: function () {
+                resetModal();
+            }
         }).done(function (data) {
             if (data['ok']) {
                 // Update goer count
                 $('.badge').text(data['data']['goer_count']);
                 // Remove table row
-                return self.parent().fadeOut(300, function() {
+                self.parent().fadeOut(300, function() {
                     $(this).remove();
                 });
+                // Popup message
+                showModal(name + '\'s group has been removed.');
+                return;
             }
-            alert(data['error']);
+            // Popup message
+            showModal(data['error'], 'danger');
         });
     });
 
@@ -32,9 +40,11 @@ $(document).ready(function () {
             url: url,
             data: self.serialize(),
             beforeSend: function () {
+                // Clear validation error
                 var div = self.find('.has-error');
                 div.find('.error-block').html('');
                 div.removeClass('has-error');
+                resetModal();
             }
         }).done(function (data) {
             if (data['ok']) {
@@ -53,19 +63,36 @@ $(document).ready(function () {
                     + '</td>'
                     + '<td class="user-group-size">' + size + '</td>'
                     + '</tr>';
-                return elem.after(html);
+                elem.after(html);
+                // Popup message
+                showModal(name + '\'s group has been added.');
+                return;
             }
+            // Popup message
+            showModal(data['error'], 'danger');
         }).fail(function (data) {
             var error = data.responseJSON;
             for (var key in error) {
                 var div = $('input[name="' + key + '"]').parents('.form-group');
                 var ul = div.find('.error-block');
                 for (var i = 0, j = error[key].length; i < j; i++) {
-                    var html = '<li>' + error[key][i] + '</li>';
+                    var html = '<li class="text-danger">' + error[key][i] + '</li>';
                     ul.append(html);
                 }
                 div.addClass('has-error');
             }
         });
     });
+
+    function resetModal() {
+        $('#signup-message')
+        .find('.text-success').html('')
+        .end().find('.text-danger').html('');
+    }
+
+    function showModal(message, type) {
+        var type = type || 'success';
+        var elem = '.text-' + type;
+        $('#signup-message').find(elem).html(message).end().modal();
+    }
 });

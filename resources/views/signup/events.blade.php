@@ -12,6 +12,7 @@
                 @include('partials/signup/events')
             </div>
         </div>
+        @include('partials/signup/modal')
         @include('partials/signup/footer')
         <script src="/js/picker.js"></script>
         <script src="/js/picker.date.js"></script>

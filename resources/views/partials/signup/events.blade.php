@@ -31,7 +31,7 @@
             <ul class="error-block"></ul>
           </div>
           <div class="form-group create-event-expires-at">
-            <label for="expires_at" class="col-sm-3 control-label">Pick an expiring date</label>
+            <label for="expires_at" class="col-sm-3 control-label">Pick a date</label>
             <div class="col-sm-9">
               <input type="text" class="form-control" id="expires_at" name="expires_at" placeholder="Pick a date...">
             </div>

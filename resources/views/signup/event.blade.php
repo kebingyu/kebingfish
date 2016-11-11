@@ -10,6 +10,7 @@
             @include('partials/signup/event')
             </div>
         </div>
+        @include('partials/signup/modal')
         @include('partials/signup/footer')
         <script src="/js/signup.event.js"></script>
     </body>

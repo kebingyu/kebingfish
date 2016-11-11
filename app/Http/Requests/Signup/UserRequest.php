@@ -25,7 +25,7 @@ class UserRequest extends FormRequest
     {
         return [
             'name' => 'required|max:255',
-            'group_size' => 'integer',
+            'group_size' => 'integer|min:1',
         ];
     }
 

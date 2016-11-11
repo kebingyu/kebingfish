@@ -11,8 +11,10 @@ body.signup {
     background-color: #5cb85c !important;
 }
 .error-block {
-    color: #a94442;
     font-style: italic;
     margin-top: 5px;
     margin-bottom: 0;
+}
+#signup-message {
+    display: none;
 }

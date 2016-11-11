@@ -27,7 +27,7 @@ class EventRequest extends FormRequest
         return [
             'title' => 'required|max:255',
             'description' => 'max:255',
-            'expires_at' => 'date',
+            'expires_at' => 'date|after_now',
         ];
     }
 
@@ -35,6 +35,7 @@ class EventRequest extends FormRequest
     {
         return [
             'title.required' => 'A title is required.',
+            'expires_at.after_now' => 'Must pick a date after today.',
         ];
     }
 }
