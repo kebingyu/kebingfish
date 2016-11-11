@@ -13,7 +13,20 @@ require('laravel-elixir-vue-2');
  |
  */
 
-elixir(mix => {
-    mix.sass('app.scss')
-       .webpack('app.js');
+elixir(function(mix) {
+    mix.styles([
+        'picker.default.css',
+        'picker.default.date.css',
+        'signup.css'
+    ], 'public/css/signup.css');
+
+    mix.scripts([
+        'picker.js',
+        'picker.date.js',
+        'signup.events.js'
+    ], 'public/js/signup.events.js');
+
+    mix.scripts([
+        'signup.event.js'
+    ], 'public/js/signup.event.js');
 });
