@@ -20,7 +20,9 @@
             <div class="col-sm-9">
               <input type="text" class="form-control" id="title" name="title" placeholder="Enter event title...">
             </div>
-            <ul class="error-block"></ul>
+            <div class="col-sm-offset-3 col-sm-9">
+                <ul class="error-block"></ul>
+            </div>
           </div>
           <div class="form-group create-event-description">
             <label for="description" class="col-sm-3 control-label">Description</label>
@@ -28,14 +30,18 @@
               <input type="textarea" rows="3" class="form-control" id="description" name="description"
                 placeholder="Enter event description...">
             </div>
-            <ul class="error-block"></ul>
+            <div class="col-sm-offset-3 col-sm-9">
+                <ul class="error-block"></ul>
+            </div>
           </div>
           <div class="form-group create-event-expires-at">
             <label for="expires_at" class="col-sm-3 control-label">Pick a date *</label>
             <div class="col-sm-9">
               <input type="text" class="form-control" id="expires_at" name="expires_at" placeholder="Pick a date...">
             </div>
-            <ul class="error-block"></ul>
+            <div class="col-sm-offset-3 col-sm-9">
+                <ul class="error-block"></ul>
+            </div>
           </div>
           <div class="form-group">
             <div class="col-sm-offset-3 col-sm-9">

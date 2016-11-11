@@ -1,4 +1,4 @@
-<div class="col-md-offset-2 col-md-8">
+<div class="col-md-offset-3 col-md-6">
     <div class="panel panel-info">
         <div class="panel-heading">
             <h3 class="panel-title">
@@ -16,14 +16,18 @@
             <div class="col-sm-8">
               <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name...">
             </div>
-            <ul class="error-block"></ul>
+            <div class="col-sm-offset-4 col-sm-8">
+                <ul class="error-block"></ul>
+            </div>
           </div>
           <div class="form-group">
             <label for="group_size" class="col-sm-4 control-label">How big is your group?</label>
             <div class="col-sm-8">
               <input type="number" class="form-control" id="group_size" name="group_size" placeholder="1">
             </div>
-            <ul class="error-block"></ul>
+            <div class="col-sm-offset-4 col-sm-8">
+                <ul class="error-block"></ul>
+            </div>
           </div>
           <div class="form-group">
             <div class="col-sm-offset-4 col-sm-8">
