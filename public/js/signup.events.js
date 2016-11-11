@@ -10,7 +10,12 @@ $(document).ready(function () {
         $.ajax({
             method: self.attr('method'),
             url: url,
-            data: self.serialize()
+            data: self.serialize(),
+            beforeSend: function () {
+                var div = self.find('.has-error');
+                div.find('.error-block').html('');
+                div.removeClass('has-error');
+            }
         }).done(function (data) {
             if (data['ok']) {
                 var elem = $('.event-list li:last');
@@ -27,7 +32,17 @@ $(document).ready(function () {
                     + '</li>';
                 return elem.after(html);
             }
-            alert(data['error']);
+        }).fail(function (data) {
+            var error = data.responseJSON;
+            for (var key in error) {
+                var div = $('input[name="' + key + '"]').parents('.form-group');
+                var ul = div.find('.error-block');
+                for (var i = 0, j = error[key].length; i < j; i++) {
+                    var html = '<li>' + error[key][i] + '</li>';
+                    ul.append(html);
+                }
+                div.addClass('has-error');
+            }
         });
     });
 });

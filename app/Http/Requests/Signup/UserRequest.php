@@ -28,4 +28,11 @@ class UserRequest extends FormRequest
             'group_size' => 'integer',
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'name.required' => 'A name is required.',
+        ];
+    }
 }

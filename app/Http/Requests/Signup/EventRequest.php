@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Signup;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Contracts\Validation\Validator;
 
 class EventRequest extends FormRequest
 {
@@ -27,6 +28,13 @@ class EventRequest extends FormRequest
             'title' => 'required|max:255',
             'description' => 'max:255',
             'expires_at' => 'date',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'title.required' => 'A title is required.',
         ];
     }
 }

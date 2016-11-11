@@ -8,5 +8,11 @@ body.signup {
 }
 .goer-count {
     margin-left: 10px;
-    background-color: #5cb85c;
+    background-color: #5cb85c !important;
+}
+.error-block {
+    color: #a94442;
+    font-style: italic;
+    margin-top: 5px;
+    margin-bottom: 0;
 }
