@@ -1,6 +1,6 @@
 $(document).ready(function () {
-    $('#expires_at').datepicker({
-        todayHighlight: true
+    $('#expires_at').pickadate({
+        format: 'mm/dd/yyyy'
     });
 
     $('form.create-event').submit(function (e) {

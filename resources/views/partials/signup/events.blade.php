@@ -18,14 +18,20 @@
           <div class="form-group">
             <label for="title" class="col-sm-3 control-label">Title</label>
             <div class="col-sm-9">
-              <input type="text" class="form-control" id="title" name="title" placeholder="Enter event title">
+              <input type="text" class="form-control" id="title" name="title" placeholder="Enter event title...">
             </div>
           </div>
           <div class="form-group">
             <label for="description" class="col-sm-3 control-label">Description</label>
             <div class="col-sm-9">
               <input type="textarea" rows="3" class="form-control" id="description" name="description"
-                placeholder="Enter event description">
+                placeholder="Enter event description...">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="expires_at" class="col-sm-3 control-label">Pick an expiring date</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" id="expires_at" name="expires_at" placeholder="Pick a date...">
             </div>
           </div>
           <div class="form-group">
