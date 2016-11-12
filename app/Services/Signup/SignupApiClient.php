@@ -50,6 +50,11 @@ class SignupApiClient
         return route('signup.event.read', ['eventId' => $eventId]);
     }
 
+    public function getApiRouteEventUpdate($eventId)
+    {
+        return route('api.signup.event.update', ['event' => $eventId]);
+    }
+
     public function getApiRouteEventUserCreate($eventId)
     {
         return route('api.signup.event.user.create', ['event' => $eventId]);

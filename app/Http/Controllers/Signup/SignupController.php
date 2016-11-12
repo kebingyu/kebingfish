@@ -71,11 +71,11 @@ class SignupController extends Controller
     public function update(Request $request, string $eventId)
     {
         $event = $this->client->getEvent($eventId);
-        return view('signup/event.update', [
+        return view('signup/event-update', [
             'pageTitle' => 'Edit event: ' . $event['title'],
-            'url' => $this->client->getApiRouteEventUserCreate($event['id']),
+            'url' => $this->client->getApiRouteEventUpdate($event['id']),
             'goerCount' => $event['goer_count'],
-        ] + $this->getEventBladeData($event));
+        ] + $this->getEventUpdateBladeData($event));
     }
 
     protected function getEventBladeData(array $event)
@@ -103,5 +103,15 @@ class SignupController extends Controller
     protected function getUserNameHref($eventId, array $user)
     {
         return $this->client->getApiRouteEventUserDelete($eventId, $user['name']);
+    }
+
+    protected function getEventUpdateBladeData(array $event)
+    {
+        $expire = Carbon::parse($event['expires_at'])->format('m/d/Y');
+        return [
+            'title' => $event['title'],
+            'description' => $event['description'],
+            'expire' => $expire,
+        ];
     }
 }
