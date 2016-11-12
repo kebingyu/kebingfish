@@ -27,6 +27,10 @@ Route::group(['prefix' => '/signup.events'], function () {
         'uses' => 'Signup\EventController@event',
         'as' => 'api.signup.event.read',
     ]);
+    Route::patch('/{event}', [
+        'uses' => 'Signup\EventController@update',
+        'as' => 'api.signup.event.update',
+    ]);
     Route::post('/', [
         'uses' => 'Signup\EventController@add',
         'as' => 'api.signup.events.create',

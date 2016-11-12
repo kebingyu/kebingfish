@@ -44,6 +44,31 @@ class EventController extends Controller
     }
 
     /**
+     * Update an event.
+     *
+     * @param EventRequest $request
+     * @param Event $event
+     *
+     * @return json
+     */
+    public function update(EventRequest $request, Event $event)
+    {
+        try {
+            $request->merge(['expires_at' => $this->getExpireTimestamp($request)]);
+            $updated = $event->update($request->all());
+            if ($updated) {
+                $data = ['data' => $event->toArray()];
+            } else {
+                $data = ['error' => 'Update event failed.'];
+            }
+        } catch (\Exception $e) {
+            $updated = false;
+            $data = ['error' => $e->getMessage()];
+        }
+        return $this->responseJson($updated, $data);
+    }
+
+    /**
      * Create a new event.
      *
      * @param EventRequest $request

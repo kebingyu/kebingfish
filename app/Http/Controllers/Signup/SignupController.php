@@ -49,7 +49,7 @@ class SignupController extends Controller
     }
 
     /**
-     * Show one events.
+     * Show one event and signup users.
      *
      * @param Request $request
      */
@@ -58,6 +58,21 @@ class SignupController extends Controller
         $event = $this->client->getEvent($eventId);
         return view('signup/event', [
             'pageTitle' => 'Event: ' . $event['title'],
+            'url' => $this->client->getApiRouteEventUserCreate($event['id']),
+            'goerCount' => $event['goer_count'],
+        ] + $this->getEventBladeData($event));
+    }
+
+    /**
+     * Edit one event.
+     *
+     * @param Request $request
+     */
+    public function update(Request $request, string $eventId)
+    {
+        $event = $this->client->getEvent($eventId);
+        return view('signup/event.update', [
+            'pageTitle' => 'Edit event: ' . $event['title'],
             'url' => $this->client->getApiRouteEventUserCreate($event['id']),
             'goerCount' => $event['goer_count'],
         ] + $this->getEventBladeData($event));

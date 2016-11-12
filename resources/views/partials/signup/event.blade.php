@@ -4,6 +4,7 @@
             <h3 class="panel-title">
                 {{ $title }}<span class="badge goer-count">{{ $goerCount }}</span>
             </h3>
+            <span class="glyphicon glyphicon-pencil pull-right js-event-edit"></span>
         </div>
         <div class="panel-body">{!! nl2br(e($description)) !!}</div>
         <div class="panel-footer">{{ $expire }}</div>
@@ -38,7 +39,14 @@
     </div>
     <div class="table-responsive">
         <table class="table table-striped">
-            <thead><tr><th class="user-name">Name</th><th class="user-group-size">Group size</th></tr></thead>
+            <thead>
+                <tr>
+                    <th class="user-name">Name</th>
+                    <th class="user-group-size">Group size
+                        <span class="glyphicon glyphicon-print pull-right js-event-print"></span>
+                    </th>
+                </tr>
+            </thead>
             <tbody>
                 @foreach ($users as $user)
                     <tr>

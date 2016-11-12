@@ -18,3 +18,6 @@ body.signup {
 #signup-message {
     display: none;
 }
+.panel-title {
+    display: inline;
+}
