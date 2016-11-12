@@ -5,7 +5,7 @@
                 {{ $title }}<span class="badge goer-count">{{ $goerCount }}</span>
             </h3>
         </div>
-        <div class="panel-body">{{ $description }}</div>
+        <div class="panel-body">{!! nl2br(e($description)) !!}</div>
         <div class="panel-footer">{{ $expire }}</div>
     </div>
     <div class="alert alert-info">

@@ -27,8 +27,8 @@
           <div class="form-group create-event-description">
             <label for="description" class="col-sm-3 control-label">Description</label>
             <div class="col-sm-9">
-              <input type="textarea" rows="3" class="form-control" id="description" name="description"
-                placeholder="Enter event description...">
+              <textarea rows="3" class="form-control" id="description" name="description"
+                placeholder="Enter event description..."></textarea>
             </div>
             <div class="col-sm-offset-3 col-sm-9">
                 <ul class="error-block"></ul>
