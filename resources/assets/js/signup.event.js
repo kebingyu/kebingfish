@@ -81,6 +81,14 @@ $(document).ready(function () {
         });
     });
 
+    $('.js-event-edit').on('click', function() {
+        window.location = $(this).data('url');
+    });
+
+    $('.js-event-print').on('click', function() {
+        window.location = $(this).data('url');
+    });
+
     function resetModal() {
         $('#signup-message')
         .find('.text-success').html('')

@@ -12,6 +12,6 @@
         </div>
         @include('partials/signup/modal')
         @include('partials/signup/footer')
-        <script src="/js/signup.events.js"></script>
+        <script src="/js/signup.event.update.js"></script>
     </body>
 </html>

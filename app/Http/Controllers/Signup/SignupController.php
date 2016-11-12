@@ -53,11 +53,28 @@ class SignupController extends Controller
      *
      * @param Request $request
      */
-    public function event(Request $request, string $eventId)
+    public function eventShow(Request $request, string $eventId)
     {
         $event = $this->client->getEvent($eventId);
         return view('signup/event', [
             'pageTitle' => 'Event: ' . $event['title'],
+            'url' => $this->client->getApiRouteEventUserCreate($event['id']),
+            'editUrl' => $this->client->getWebRouteEventUpdate($event['id']),
+            'printUrl' => $this->client->getWebRouteEventPrint($event['id']),
+            'goerCount' => $event['goer_count'],
+        ] + $this->getEventBladeData($event));
+    }
+
+    /**
+     * Show one event and signup users as printable.
+     *
+     * @param Request $request
+     */
+    public function eventPrint(Request $request, string $eventId)
+    {
+        $event = $this->client->getEvent($eventId);
+        return view('signup/event-print', [
+            'pageTitle' => 'Print event: ' . $event['title'],
             'url' => $this->client->getApiRouteEventUserCreate($event['id']),
             'goerCount' => $event['goer_count'],
         ] + $this->getEventBladeData($event));
@@ -68,12 +85,13 @@ class SignupController extends Controller
      *
      * @param Request $request
      */
-    public function update(Request $request, string $eventId)
+    public function eventUpdate(Request $request, string $eventId)
     {
         $event = $this->client->getEvent($eventId);
         return view('signup/event-update', [
             'pageTitle' => 'Edit event: ' . $event['title'],
             'url' => $this->client->getApiRouteEventUpdate($event['id']),
+            'successUrl' => $this->client->getWebRouteEventRead($event['id']),
             'goerCount' => $event['goer_count'],
         ] + $this->getEventUpdateBladeData($event));
     }

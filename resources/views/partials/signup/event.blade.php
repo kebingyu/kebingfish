@@ -4,7 +4,7 @@
             <h3 class="panel-title">
                 {{ $title }}<span class="badge goer-count">{{ $goerCount }}</span>
             </h3>
-            <span class="glyphicon glyphicon-pencil pull-right js-event-edit"></span>
+            <span class="glyphicon glyphicon-pencil pull-right js-event-edit" data-url="{{ $editUrl }}"></span>
         </div>
         <div class="panel-body">{!! nl2br(e($description)) !!}</div>
         <div class="panel-footer">{{ $expire }}</div>
@@ -43,7 +43,8 @@
                 <tr>
                     <th class="user-name">Name</th>
                     <th class="user-group-size">Group size
-                        <span class="glyphicon glyphicon-print pull-right js-event-print"></span>
+                        <span class="glyphicon glyphicon-print pull-right js-event-print"
+                            data-url="{{ $printUrl }}"></span>
                     </th>
                 </tr>
             </thead>

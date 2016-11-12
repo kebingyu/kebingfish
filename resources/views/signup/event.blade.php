@@ -7,11 +7,11 @@
         @include('partials/signup/nav')
         <div class="container" role="main">
             <div class="row">
-            @include('partials/signup/event.update')
+            @include('partials/signup/event')
             </div>
         </div>
         @include('partials/signup/modal')
         @include('partials/signup/footer')
-        <script src="/js/signup.event.update.js"></script>
+        <script src="/js/signup.event.js"></script>
     </body>
 </html>

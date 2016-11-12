@@ -1,7 +1,7 @@
 <div class="col-md-offset-3 col-md-6">
     <div class="alert alert-info">
-        <div class="form-title">Update event</div>
-        <form class="form-horizontal create-event" method="POST" action="{{ $url }}" accept-charset="UTF-8">
+        <div class="form-title">Edit this event</div>
+        <form class="form-horizontal update-event" method="PATCH" action="{{ $url }}" accept-charset="UTF-8">
           <div class="form-group create-event-title">
             <label for="title" class="col-sm-3 control-label">Title *</label>
             <div class="col-sm-9">
@@ -34,6 +34,7 @@
               <button type="submit" class="btn btn-primary">Submit</button>
             </div>
           </div>
+          <input type="hidden" class="success-url" data-url="{{ $successUrl }}">
         </form>
     </div>
 </div>

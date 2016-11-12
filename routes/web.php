@@ -22,11 +22,15 @@ Route::group(['prefix' => '/signup/events'], function () {
         'as' => 'signup.events.read',
     ]);
     Route::get('/{eventId}', [
-        'uses' => 'Signup\SignupController@event',
+        'uses' => 'Signup\SignupController@eventShow',
         'as' => 'signup.event.read',
     ]);
     Route::get('/{eventId}/update', [
-        'uses' => 'Signup\SignupController@update',
+        'uses' => 'Signup\SignupController@eventUpdate',
         'as' => 'signup.event.update',
+    ]);
+    Route::get('/{eventId}/print', [
+        'uses' => 'Signup\SignupController@eventPrint',
+        'as' => 'signup.event.print',
     ]);
 });

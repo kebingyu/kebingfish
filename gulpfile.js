@@ -29,4 +29,10 @@ elixir(function(mix) {
     mix.scripts([
         'signup.event.js'
     ], 'public/js/signup.event.js');
+
+    mix.scripts([
+        'picker.js',
+        'picker.date.js',
+        'signup.event.update.js'
+    ], 'public/js/signup.event.update.js');
 });
