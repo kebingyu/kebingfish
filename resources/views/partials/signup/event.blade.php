@@ -7,7 +7,7 @@
             <span class="glyphicon glyphicon-pencil pull-right js-event-edit" data-url="{{ $editUrl }}"></span>
         </div>
         <div class="panel-body">{!! nl2br(e($description)) !!}</div>
-        <div class="panel-footer">{{ $expire }}</div>
+        <div class="panel-footer">{{ $expire }} ({{ $expiresIn }})</div>
     </div>
     <div class="alert alert-info">
         <div class="form-title">Sign me up!</div>
