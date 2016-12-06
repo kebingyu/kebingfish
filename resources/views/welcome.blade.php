@@ -3,9 +3,8 @@
     <head>
         @include('partials/signup/header')
     </head>
-    <body class="signup">
+    <body class="">
         <div id="app">
-            <navbar></navbar>
             <div class="container" role="main">
                 <div class="row">
                     <div class="col-md-offset-3 col-md-6">

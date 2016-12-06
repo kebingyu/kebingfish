@@ -14,27 +14,21 @@ require('laravel-elixir-vue-2');
  */
 
 elixir(function(mix) {
-    mix.webpack('home.js');
+    mix
+        .styles([
+            'picker.default.css',
+            'picker.default.date.css',
+            'signup.css'
+        ], 'public/css/signup.css')
 
-    mix.styles([
-        'picker.default.css',
-        'picker.default.date.css',
-        'signup.css'
-    ], 'public/css/signup.css');
+        .scripts([
+            'picker.js',
+            'picker.date.js'
+        ], 'public/js/pickadate.js')
 
-    mix.scripts([
-        'picker.js',
-        'picker.date.js',
-        'signup.events.js'
-    ], 'public/js/signup.events.js');
+        .webpack('home.js')
 
-    mix.scripts([
-        'signup.event.js'
-    ], 'public/js/signup.event.js');
-
-    mix.scripts([
-        'picker.js',
-        'picker.date.js',
-        'signup.event.update.js'
-    ], 'public/js/signup.event.update.js');
+        .webpack('signup.events.js')
+        
+        .webpack('signup.event.js');
 });

@@ -1,4 +1,4 @@
-Vue.component('navbar', require('./components/Navbar.vue'));
+require('./bootstrap');
 
 const app = new Vue({
     el: '#app'
