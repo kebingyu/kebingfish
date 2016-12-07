@@ -1,8 +1,10 @@
 require('./bootstrap');
 
+Vue.component('events-list', require('./components/EventsList.vue'));
+
 const app = new Vue({
-    el: '#app',
-    data: {},
+    el: '#signup',
+    data : {},
     mounted: function() {
         this.initDatePicker();
     },
