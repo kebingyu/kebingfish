@@ -104,7 +104,6 @@ class SignupController extends Controller
             'description' => $event['description'],
             'users' => $this->usersToTableRows($event['id'], $event['users']),
             'expire' => "This event expires on {$expire}",
-            'expiresIn' => $event['expires_in'],
         ];
     }
 
