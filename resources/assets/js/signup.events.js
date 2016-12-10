@@ -1,21 +1,7 @@
-require('./bootstrap');
-
-const app = new Vue({
-    el: '#app',
-    data: {},
-    mounted: function() {
-        this.initDatePicker();
-    },
-    methods: {
-        initDatePicker: function() {
-            $('#expires_at').pickadate({
-                format: 'mm/dd/yyyy'
-            });
-        }
-    }
-});
-
 $(document).ready(function () {
+    $('#expires_at').pickadate({
+        format: 'mm/dd/yyyy'
+    });
 
     $('form.create-event').submit(function (e) {
         e.preventDefault();
