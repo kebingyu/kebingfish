@@ -24,8 +24,12 @@ class SignupController extends Controller
      */
     public function events(Request $request)
     {
+        $events = array_map(function ($event) {
+            return $this->getEventsBladeData($event);
+        }, $this->client->getAllEvents());
         return view('signup/events', [
             'pageTitle' => 'All Events',
+            'events' => $events,
             'url' => $this->client->getApiRouteEventsCreate(),
         ]);
     }
