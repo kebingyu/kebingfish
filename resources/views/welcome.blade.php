@@ -4,18 +4,26 @@
         @include('partials/signup/header')
     </head>
     <body class="signup">
-        @include('partials/signup/nav')
-        <div class="container" role="main">
-            <div class="row">
-                <div class="col-md-offset-3 col-md-6">
-                    <ul class="list-group event-list">
-                        <li class="list-group-item">
-                            <a href="/signup/events">Signup Events</a>
-                        </li>
-                    </ul>
-                </div>
+      <div class="container" role="main">
+        <div class="row">
+          <div class="col-md-offset-3 col-md-6">
+            <div class="well">
+              <p>My site, still under construction. Meanwhile, you can find me here...</p>
+              <div class="list-group">
+                <a href="https://www.facebook.com/yukebing" class="list-group-item">
+                  Facebook
+                </a>
+                <a href="https://www.linkedin.com/in/kebing-yu-5a016022" class="list-group-item">
+                  Linkedin
+                </a>
+                <a href="https://github.com/kebingyu" class="list-group-item">
+                  Github
+                </a>
+              </div>
             </div>
+          </div>
         </div>
-        @include('partials/signup/footer')
+      </div>
+      @include('partials/signup/footer')
     </body>
 </html>
