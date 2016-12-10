@@ -14,8 +14,6 @@ require('laravel-elixir-vue-2');
  */
 
 elixir(function(mix) {
-    mix.webpack('home.js');
-
     mix.styles([
         'picker.default.css',
         'picker.default.date.css',
