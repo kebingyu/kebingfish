@@ -11,11 +11,11 @@
 |
 */
 
-Route::get('/', [
-    'uses' => 'HomeController@index',
-    'as' => 'home',
-]);
-
+Route::get('/', function () {
+    return view('welcome', [
+        'pageTitle' => 'Home',
+    ]);
+});
 Route::group(['prefix' => '/signup/events'], function () {
     Route::get('/', [
         'uses' => 'Signup\SignupController@events',
