@@ -15,7 +15,7 @@ class SignupApiClient
         $this->client = $client;
     }
 
-    public function getAllEvents()
+    public function getEvents()
     {
         return $this->request('GET', $this->getApiRouteEventsRead());
     }
@@ -76,6 +76,11 @@ class SignupApiClient
             'event' => $eventId,
             'eventUser' => $userName,
         ]);
+    }
+
+    public function getLocations()
+    {
+        return $this->request('GET', route('api.signup.locations.read'));
     }
 
     protected function request(string $method, string $uri, array $options = [])

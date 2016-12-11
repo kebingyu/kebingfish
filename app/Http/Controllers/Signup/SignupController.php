@@ -26,7 +26,7 @@ class SignupController extends Controller
     {
         $events = array_map(function ($event) {
             return $this->getEventsBladeData($event);
-        }, $this->client->getAllEvents());
+        }, $this->client->getEvents());
         return view('signup/events', [
             'pageTitle' => 'All Events',
             'events' => $events,
@@ -48,12 +48,28 @@ class SignupController extends Controller
         return $this->client->getWebRouteEventRead($event['id']);
     }
 
+    /**
+     * Create a new event.
+     *
+     * @param Request $request
+     */
     public function eventCreate(Request $request)
     {
+        $type = $request->get('type', 1);
         return view('signup/event-create', [
             'pageTitle' => 'Create Event',
             'url' => $this->client->getApiRouteEventsCreate(),
+            'type' => $type,
+            'locations' => $this->getLocations($type),
         ]);
+    }
+
+    private function getLocations($type)
+    {
+        if ($type == 2) {
+            return $this->client->getLocations();
+        }
+        return [];
     }
 
     /**

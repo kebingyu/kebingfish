@@ -25,6 +25,7 @@ class EventRequest extends FormRequest
     public function rules()
     {
         return [
+            'type' => 'in:1,2',
             'title' => 'required|max:255',
             'description' => 'max:255',
             'expires_at' => 'date|after_now',
@@ -34,6 +35,7 @@ class EventRequest extends FormRequest
     public function messages()
     {
         return [
+            'type.in' => 'A valid event type is required.',
             'title.required' => 'A title is required.',
             'expires_at.after_now' => 'Must pick a date after today.',
         ];

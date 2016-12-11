@@ -9,7 +9,7 @@ class Event extends Model
 {
     protected $table = 'signup_events';
 
-    protected $fillable = ['type', 'title', 'description', 'expires_at'];
+    protected $fillable = ['type', 'title', 'description', 'expires_at', 'location_id'];
 
     protected $hidden = ['created_at', 'updated_at'];
 

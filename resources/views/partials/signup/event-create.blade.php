@@ -21,6 +21,19 @@
                 <ul class="error-block"></ul>
             </div>
           </div>
+          @if (count($locations) > 0)
+          <div class="form-group create-event-location">
+            <label for="location_id" class="col-sm-3 control-label">Location</label>
+            <div class="col-sm-9">
+              @foreach ($locations as $index => $location)
+              <div class="input-group">
+                <input type="radio" aria-label="location" name="location_id" value="{{ $location['id'] }}"
+                  @if (!$index) {!! "checked" !!} @endif>{{ $location['name'] }}
+              </div>
+              @endforeach
+            </div>
+          </div>
+          @endif
           <div class="form-group create-event-expires-at">
             <label for="expires_at" class="col-sm-3 control-label">Pick a date *</label>
             <div class="col-sm-9">
@@ -30,6 +43,7 @@
                 <ul class="error-block"></ul>
             </div>
           </div>
+          <input type="hidden" value="{{ $type }}">
           <div class="form-group">
             <div class="col-sm-offset-3 col-sm-9">
               <button type="submit" class="btn btn-primary">Submit</button>
