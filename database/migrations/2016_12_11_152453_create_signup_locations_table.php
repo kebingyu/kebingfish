@@ -15,6 +15,7 @@ class CreateSignupLocationsTable extends Migration
     {
         Schema::create('signup_locations', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('name', 255)->unique();
             $table->json('data');
             $table->timestamps();
         });
@@ -27,6 +28,9 @@ class CreateSignupLocationsTable extends Migration
      */
     public function down()
     {
+        Schema::table('signup_locations', function (Blueprint $table) {
+            $table->dropUnique(['name']);
+        });
         Schema::dropIfExists('signup_locations');
     }
 }

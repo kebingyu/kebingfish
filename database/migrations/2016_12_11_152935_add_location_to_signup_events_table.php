@@ -18,8 +18,7 @@ class AddLocationToSignupEventsTable extends Migration
             $table->foreign('location_id')->references('id')->on('signup_locations');
         });
         Schema::table('signup_event_user', function (Blueprint $table) {
-            $table->integer('location_id')->unsigned()->nullable();
-            $table->foreign('location_id')->references('id')->on('signup_locations');
+            $table->string('option', 255)->nullable();
         });
     }
 
@@ -31,8 +30,7 @@ class AddLocationToSignupEventsTable extends Migration
     public function down()
     {
         Schema::table('signup_event_user', function (Blueprint $table) {
-            $table->dropForeign(['location_id']);
-            $table->dropColumn('location_id');
+            $table->dropColumn('option');
         });
         Schema::table('signup_events', function (Blueprint $table) {
             $table->dropForeign(['location_id']);
