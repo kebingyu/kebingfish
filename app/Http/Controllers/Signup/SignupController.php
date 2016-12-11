@@ -85,7 +85,7 @@ class SignupController extends Controller
             'url' => $this->client->getApiRouteEventUserCreate($event['id']),
             'editUrl' => $this->client->getWebRouteEventUpdate($event['id']),
             'printUrl' => $this->client->getWebRouteEventPrint($event['id']),
-            'goerCount' => $event['goer_count'],
+            'location' => $event['location'],
         ] + $this->getEventBladeData($event));
     }
 
@@ -100,7 +100,6 @@ class SignupController extends Controller
         return view('signup/event-print', [
             'pageTitle' => 'Print event: ' . $event['title'],
             'url' => $this->client->getApiRouteEventUserCreate($event['id']),
-            'goerCount' => $event['goer_count'],
         ] + $this->getEventBladeData($event));
     }
 
@@ -128,6 +127,7 @@ class SignupController extends Controller
             'description' => $event['description'],
             'users' => $this->usersToTableRows($event['id'], $event['users']),
             'expire' => "This event expires on {$expire}",
+            'goerCount' => $event['goer_count'],
         ];
     }
 
@@ -154,6 +154,9 @@ class SignupController extends Controller
             'title' => $event['title'],
             'description' => $event['description'],
             'expire' => $expire,
+            'type' => $event['type'],
+            'location_id' => $event['location']['id'] ?? null,
+            'locations' => $this->getLocations($event['type']),
         ];
     }
 }

@@ -25,12 +25,18 @@ class Event extends Model
             ->withPivot('group_size');
     }
 
+    public function location()
+    {
+        return $this->hasOne(Location::class, 'id', 'location_id');
+    }
+
     public function toArray()
     {
         return parent::toArray() + [
-            'expires_in' => Carbon::parse($this->expires_at)->diffForHumans(),
-            'goer_count' => $this->getGoerCount(),
-        ];
+                'expires_in' => Carbon::parse($this->expires_at)->diffForHumans(),
+                'goer_count' => $this->getGoerCount(),
+                'location' => $this->location ? $this->location->toArray() : [],
+            ];
     }
 
     protected function getGoerCount()

@@ -23,14 +23,18 @@
           </div>
           @if (count($locations) > 0)
           <div class="form-group create-event-location">
-            <label for="location_id" class="col-sm-3 control-label">Location</label>
+            <label for="location_id" class="col-sm-3 control-label">Pick a location *</label>
             <div class="col-sm-9">
-              @foreach ($locations as $index => $location)
-              <div class="input-group">
-                <input type="radio" aria-label="location" name="location_id" value="{{ $location['id'] }}"
-                  @if (!$index) {!! "checked" !!} @endif>{{ $location['name'] }}
-              </div>
-              @endforeach
+              <select class="form-control" name="location_id">
+                @foreach ($locations as $index => $location)
+                <option
+                  aria-label="{{ $location['name'] }}"
+                  value="{{ $location['id'] }}"
+                  @if (!$index) {!! "selected" !!} @endif>
+                  {{ $location['name'] }}
+                </option>
+                @endforeach
+              </select>
             </div>
           </div>
           @endif
@@ -43,7 +47,7 @@
                 <ul class="error-block"></ul>
             </div>
           </div>
-          <input type="hidden" value="{{ $type }}">
+          <input type="hidden" name="type" value="{{ $type }}">
           <div class="form-group">
             <div class="col-sm-offset-3 col-sm-9">
               <button type="submit" class="btn btn-primary">Submit</button>

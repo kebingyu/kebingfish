@@ -20,6 +20,23 @@
                 <ul class="error-block"></ul>
             </div>
           </div>
+          @if (count($locations) > 0)
+          <div class="form-group create-event-location">
+            <label for="location_id" class="col-sm-3 control-label">Pick a location *</label>
+            <div class="col-sm-9">
+              <select class="form-control" name="location_id">
+                @foreach ($locations as $location)
+                <option
+                  aria-label="{{ $location['name'] }}"
+                  value="{{ $location['id'] }}"
+                  @if ($location['id'] == $location_id) {!! "selected" !!} @endif>
+                  {{ $location['name'] }}
+                </option>
+                @endforeach
+              </select>
+            </div>
+          </div>
+          @endif
           <div class="form-group create-event-expires-at">
             <label for="expires_at" class="col-sm-3 control-label">Pick a date *</label>
             <div class="col-sm-9">
@@ -29,6 +46,7 @@
                 <ul class="error-block"></ul>
             </div>
           </div>
+          <input type="hidden" name="type" value="{{ $type }}">
           <div class="form-group">
             <div class="col-sm-offset-3 col-sm-9">
               <button type="submit" class="btn btn-primary">Submit</button>

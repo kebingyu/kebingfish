@@ -30,6 +30,23 @@
                 <ul class="error-block"></ul>
             </div>
           </div>
+          @if (count($location) > 0)
+          <div class="form-group create-event-location">
+            <label for="location_id" class="col-sm-4 control-label">Choose food *</label>
+            <div class="col-sm-8">
+              <select class="form-control" name="option">
+                @foreach ($location['data']['option'] as $index => $option)
+                <option
+                  aria-label="{{ $option }}"
+                  value="{{ $option }}"
+                  @if (!$index) {!! "selected" !!} @endif>
+                  {{ $option }}
+                </option>
+                @endforeach
+              </select>
+            </div>
+          </div>
+          @endif
           <div class="form-group">
             <div class="col-sm-offset-4 col-sm-8">
               <button type="submit" class="btn btn-primary">Submit</button>
