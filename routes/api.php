@@ -49,3 +49,14 @@ Route::group(['prefix' => '/signup.events'], function () {
         'as' => 'api.signup.event.user.delete',
     ]);
 });
+
+Route::group(['prefix' => '/signup.locations'], function () {
+    Route::get('/', [
+        'uses' => 'Signup\LocationController@locations',
+        'as' => 'api.signup.locations.read',
+    ]);
+    Route::get('/{location}', [
+        'uses' => 'Signup\LocationController@location',
+        'as' => 'api.signup.location.read',
+    ]);
+});

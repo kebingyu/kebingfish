@@ -11,4 +11,11 @@ class Location extends Model
     protected $fillable = ['name', 'data'];
 
     protected $hidden = ['created_at', 'updated_at'];
+
+    public function toArray()
+    {
+        $location = parent::toArray();
+        $location['data'] = json_decode($location['data'], true);
+        return $location;
+    }
 }

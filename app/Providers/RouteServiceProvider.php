@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Models\Signup\Event;
 use App\Models\Signup\User;
+use App\Models\Signup\Location;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
@@ -30,6 +31,9 @@ class RouteServiceProvider extends ServiceProvider
         });
         Route::bind('eventUser', function ($name) {
             return User::where('name', $name)->firstOrFail();
+        });
+        Route::bind('location', function ($id) {
+            return Location::find($id);
         });
 
         parent::boot();
