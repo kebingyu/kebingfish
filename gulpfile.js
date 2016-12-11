@@ -23,8 +23,8 @@ elixir(function(mix) {
     mix.scripts([
         'picker.js',
         'picker.date.js',
-        'signup.events.js'
-    ], 'public/js/signup.events.js');
+        'signup.event.create.js'
+    ], 'public/js/signup.event.create.js');
 
     mix.scripts([
         'signup.event.js'

@@ -11,7 +11,8 @@
     </div>
     <div id="navbar" class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
-        <li><a href="/signup/events">Events</a></li>
+        <li><a href="{{ route('signup.events.read') }}">All Events</a></li>
+        <li><a href="{{ route('signup.event.create') }}">Create Event</a></li>
         <li><a href="#">About</a></li>
       </ul>
     </div>

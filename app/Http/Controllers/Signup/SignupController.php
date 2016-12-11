@@ -48,6 +48,14 @@ class SignupController extends Controller
         return $this->client->getWebRouteEventRead($event['id']);
     }
 
+    public function eventCreate(Request $request)
+    {
+        return view('signup/event-create', [
+            'pageTitle' => 'Create Event',
+            'url' => $this->client->getApiRouteEventsCreate(),
+        ]);
+    }
+
     /**
      * Show one event and signup users.
      *

@@ -19,18 +19,9 @@ $(document).ready(function () {
             }
         }).done(function (data) {
             if (data['ok']) {
-                var elem = $('.event-list li:last');
-                data = data['data'];
-                url = 'http://' + window.location.hostname + '/signup/events/';
-                var html = '<li class="list-group-item">'
-                    + '<a href="' + url + data['id'] + '">' + data['title']
-                    + '<span class="badge goer-count">0</span>'
-                    + '<span class="glyphicon glyphicon-chevron-right pull-right"></span>'
-                    + '</a>'
-                    + '</li>';
-                elem.after(html);
                 // Popup message
                 showModal('Event added.');
+                window.location = 'http://' + window.location.hostname + '/signup/events';
                 return;
             }
             // Popup message
