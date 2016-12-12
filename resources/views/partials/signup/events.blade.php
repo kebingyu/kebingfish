@@ -4,7 +4,7 @@
         @foreach ($events as $event)
             <li class="list-group-item">
                 <a href="{{ $event['href'] }}">
-                    {{ $event['title'] }}<span class="badge goer-count">{{ $event['count'] }}</span>
+                    {{ $event['title'] }}<span class="badge goer-count">{{ $event['goerCount'] }}</span>
                     <span class="glyphicon glyphicon-chevron-right pull-right"></span>
                 </a>
             </li>
