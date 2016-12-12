@@ -25,15 +25,15 @@ Route::group(['prefix' => '/signup/events'], function () {
         'uses' => 'Signup\SignupController@eventCreate',
         'as' => 'signup.event.create',
     ]);
-    Route::get('/{eventId}', [
+    Route::get('/{event}', [
         'uses' => 'Signup\SignupController@eventShow',
         'as' => 'signup.event.read',
     ]);
-    Route::get('/{eventId}/update', [
+    Route::get('/{event}/update', [
         'uses' => 'Signup\SignupController@eventUpdate',
         'as' => 'signup.event.update',
     ]);
-    Route::get('/{eventId}/print', [
+    Route::get('/{event}/print', [
         'uses' => 'Signup\SignupController@eventPrint',
         'as' => 'signup.event.print',
     ]);

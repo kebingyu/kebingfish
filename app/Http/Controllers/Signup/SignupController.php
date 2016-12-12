@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Services\Signup\SignupApiClient;
 use App\Services\Signup\SignupRouteTrait;
 use App\Services\Signup\EventFormatterFactory;
+use App\Models\Signup\Event;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 
@@ -68,10 +69,11 @@ class SignupController extends Controller
      * Show one event and signup users.
      *
      * @param Request $request
+     * @param Event   $event
      */
-    public function eventShow(Request $request, string $eventId)
+    public function eventShow(Request $request, Event $event)
     {
-        $event = $this->client->getEvent($eventId);
+        $event = $event->toArray();
 
         return view('signup/event', [
             'pageTitle' => 'Event: ' . $event['title'],
@@ -85,10 +87,11 @@ class SignupController extends Controller
      * Show one event and signup users as printable.
      *
      * @param Request $request
+     * @param Event   $event
      */
-    public function eventPrint(Request $request, string $eventId)
+    public function eventPrint(Request $request, Event $event)
     {
-        $event = $this->client->getEvent($eventId);
+        $event = $event->toArray();
 
         return view('signup/event-print', [
             'pageTitle' => 'Print event: ' . $event['title'],
@@ -100,10 +103,11 @@ class SignupController extends Controller
      * Edit one event.
      *
      * @param Request $request
+     * @param Event   $event
      */
-    public function eventUpdate(Request $request, string $eventId)
+    public function eventUpdate(Request $request, Event $event)
     {
-        $event = $this->client->getEvent($eventId);
+        $event = $event->toArray();
 
         return view('signup/event-update', [
             'pageTitle' => 'Edit event: ' . $event['title'],
