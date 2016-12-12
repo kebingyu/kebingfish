@@ -38,3 +38,14 @@ Route::group(['prefix' => '/signup/events'], function () {
         'as' => 'signup.event.print',
     ]);
 });
+
+Route::group(['prefix' => '/signup/locations'], function () {
+    Route::get('/', [
+        'uses' => 'Signup\SignupLocationController@locations',
+        'as' => 'signup.locations.read',
+    ]);
+    Route::get('/{location}', [
+        'uses' => 'Signup\SignupLocationController@location',
+        'as' => 'signup.location.read',
+    ]);
+});

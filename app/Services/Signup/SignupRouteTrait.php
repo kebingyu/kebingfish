@@ -56,4 +56,24 @@ trait SignupRouteTrait
             'eventUser' => $userName,
         ]);
     }
+
+    public function getWebRouteLocationsRead()
+    {
+        return route('signup.locations.read');
+    }
+
+    public function getWebRouteLocationRead($id)
+    {
+        return route('signup.location.read', ['locationId' => $id]);
+    }
+
+    public function getApiRouteLocationsRead()
+    {
+        return route('api.signup.locations.read');
+    }
+
+    public function getApiRouteLocationRead($id)
+    {
+        return route('api.signup.location.read', ['locationId' => $id]);
+    }
 }

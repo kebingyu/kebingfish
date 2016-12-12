@@ -29,7 +29,12 @@ class SignupApiClient
 
     public function getLocations()
     {
-        return $this->request('GET', route('api.signup.locations.read'));
+        return $this->request('GET', $this->getApiRouteLocationsRead());
+    }
+
+    public function getLocation(string $locationId)
+    {
+        return $this->request('GET', $this->getApiRouteLocationRead($locationId));
     }
 
     protected function request(string $method, string $uri, array $options = [])
