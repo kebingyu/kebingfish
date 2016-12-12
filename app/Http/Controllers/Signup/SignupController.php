@@ -4,11 +4,14 @@ namespace App\Http\Controllers\Signup;
 
 use App\Http\Controllers\Controller;
 use App\Services\Signup\SignupApiClient;
+use App\Services\Signup\SignupRouteTrait;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 
 class SignupController extends Controller
 {
+    use SignupRouteTrait;
+
     /* @var SignupApiClient */
     protected $client;
 
@@ -30,7 +33,7 @@ class SignupController extends Controller
         return view('signup/events', [
             'pageTitle' => 'All Events',
             'events' => $events,
-            'url' => $this->client->getApiRouteEventsCreate(),
+            'url' => $this->getApiRouteEventsCreate(),
         ]);
     }
 
@@ -45,7 +48,7 @@ class SignupController extends Controller
 
     protected function getEventTitleHref(array $event)
     {
-        return $this->client->getWebRouteEventRead($event['id']);
+        return $this->getWebRouteEventRead($event['id']);
     }
 
     /**
@@ -58,7 +61,7 @@ class SignupController extends Controller
         $type = $request->get('type', 1);
         return view('signup/event-create', [
             'pageTitle' => 'Create Event',
-            'url' => $this->client->getApiRouteEventsCreate(),
+            'url' => $this->getApiRouteEventsCreate(),
             'type' => $type,
             'locations' => $this->getLocations($type),
         ]);
@@ -82,9 +85,9 @@ class SignupController extends Controller
         $event = $this->client->getEvent($eventId);
         return view('signup/event', [
             'pageTitle' => 'Event: ' . $event['title'],
-            'url' => $this->client->getApiRouteEventUserCreate($event['id']),
-            'editUrl' => $this->client->getWebRouteEventUpdate($event['id']),
-            'printUrl' => $this->client->getWebRouteEventPrint($event['id']),
+            'url' => $this->getApiRouteEventUserCreate($event['id']),
+            'editUrl' => $this->getWebRouteEventUpdate($event['id']),
+            'printUrl' => $this->getWebRouteEventPrint($event['id']),
         ] + $this->getEventBladeData($event));
     }
 
@@ -98,7 +101,7 @@ class SignupController extends Controller
         $event = $this->client->getEvent($eventId);
         return view('signup/event-print', [
             'pageTitle' => 'Print event: ' . $event['title'],
-            'url' => $this->client->getApiRouteEventUserCreate($event['id']),
+            'url' => $this->getApiRouteEventUserCreate($event['id']),
         ] + $this->getEventBladeData($event) + $this->getEventPrintBladeData($event));
     }
 
@@ -112,8 +115,8 @@ class SignupController extends Controller
         $event = $this->client->getEvent($eventId);
         return view('signup/event-update', [
             'pageTitle' => 'Edit event: ' . $event['title'],
-            'url' => $this->client->getApiRouteEventUpdate($event['id']),
-            'successUrl' => $this->client->getWebRouteEventRead($event['id']),
+            'url' => $this->getApiRouteEventUpdate($event['id']),
+            'successUrl' => $this->getWebRouteEventRead($event['id']),
             'goerCount' => $event['goer_count'],
         ] + $this->getEventUpdateBladeData($event));
     }
@@ -145,7 +148,7 @@ class SignupController extends Controller
 
     protected function getUserNameHref($eventId, array $user)
     {
-        return $this->client->getApiRouteEventUserDelete($eventId, $user['name']);
+        return $this->getApiRouteEventUserDelete($eventId, $user['name']);
     }
 
     protected function getEventUpdateBladeData(array $event)
