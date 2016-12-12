@@ -5,6 +5,7 @@
                 {{ $title }}<span class="badge goer-count">{{ $goerCount }}</span>
             </h3>
             <span class="glyphicon glyphicon-pencil pull-right js-event-edit" data-url="{{ $editUrl }}"></span>
+            <span class="glyphicon glyphicon-print pull-right js-event-print" data-url="{{ $printUrl }}"></span>
         </div>
         <div class="panel-body">{!! nl2br(e($description)) !!}</div>
         <div class="panel-footer">{{ $expire }}</div>
@@ -59,10 +60,10 @@
             <thead>
                 <tr>
                     <th class="user-name">Name</th>
-                    <th class="user-group-size">Group size
-                        <span class="glyphicon glyphicon-print pull-right js-event-print"
-                            data-url="{{ $printUrl }}"></span>
-                    </th>
+                    <th class="user-group-size">Group size</th>
+                    @if (count($location) > 0)
+                    <th class="user-option">Food</th>
+                    @endif
                 </tr>
             </thead>
             <tbody>
@@ -70,6 +71,9 @@
                     <tr>
                         <td class="user-name"><a href="{{ $user['href'] }}">{{ $user['name'] }}</a></td>
                         <td class="user-group-size">{{ $user['group_size'] }}</td>
+                        @if (!is_null($user['option']))
+                        <td class="user-option">{{ $user['option'] }}</td>
+                        @endif
                     </tr>
                 @endforeach
             </tbody>

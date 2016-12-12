@@ -85,7 +85,6 @@ class SignupController extends Controller
             'url' => $this->client->getApiRouteEventUserCreate($event['id']),
             'editUrl' => $this->client->getWebRouteEventUpdate($event['id']),
             'printUrl' => $this->client->getWebRouteEventPrint($event['id']),
-            'location' => $event['location'],
         ] + $this->getEventBladeData($event));
     }
 
@@ -100,7 +99,7 @@ class SignupController extends Controller
         return view('signup/event-print', [
             'pageTitle' => 'Print event: ' . $event['title'],
             'url' => $this->client->getApiRouteEventUserCreate($event['id']),
-        ] + $this->getEventBladeData($event));
+        ] + $this->getEventBladeData($event) + $this->getEventPrintBladeData($event));
     }
 
     /**
@@ -128,6 +127,7 @@ class SignupController extends Controller
             'users' => $this->usersToTableRows($event['id'], $event['users']),
             'expire' => "This event expires on {$expire}",
             'goerCount' => $event['goer_count'],
+            'location' => $event['location'],
         ];
     }
 
@@ -138,6 +138,7 @@ class SignupController extends Controller
                 'name' => $user['name'],
                 'href' => $this->getUserNameHref($eventId, $user),
                 'group_size' => $user['pivot']['group_size'],
+                'option' => $user['pivot']['option'],
             ];
         }, $users);
     }
@@ -158,5 +159,21 @@ class SignupController extends Controller
             'location_id' => $event['location']['id'] ?? null,
             'locations' => $this->getLocations($event['type']),
         ];
+    }
+
+    protected function getEventPrintBladeData(array $event)
+    {
+        $options = [];
+        if ($event['location']) {
+            foreach ($event['users'] as $user) {
+                $option = $user['pivot']['option'];
+                if (isset($options[$option])) {
+                    $options[$option] += 1;
+                } else {
+                    $options[$option] = 1;
+                }
+            }
+        }
+        return ['options' => $options];
     }
 }

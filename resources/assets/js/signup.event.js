@@ -58,8 +58,12 @@ $(document).ready(function () {
                     + '<td class="user-name">'
                     + '<a href="' + url + '/' + name + '">' + name + '</a>'
                     + '</td>'
-                    + '<td class="user-group-size">' + size + '</td>'
-                    + '</tr>';
+                    + '<td class="user-group-size">' + size + '</td>';
+                if ($('th.user-option').length > 0) {
+                    var option = self.find('select[name="option"]').val();
+                    html += '<td class="user-option">' + option + '</td>';
+                }
+                html += '</tr>';
                 elem.append(html);
                 // Popup message
                 showModal(name + '\'s group has been added.');

@@ -25,6 +25,7 @@ class EventUserController extends Controller
         if (!$this->userhasSignedUp($event, $user->id)) {
             $event->users()->attach($user->id, [
                 'group_size' => $this->getGroupSize($request),
+                'option' => $request->get('option', null),
             ]);
             return $this->responseJson(true, [
                 'data' => Event::find($event->id)->toArray(),

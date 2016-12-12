@@ -15,6 +15,6 @@ class User extends Model
     public function events()
     {
         return $this->belongsToMany(Event::class, 'signup_event_user', 'event_id', 'user_id')
-            ->withPivot('group_size');
+            ->withPivot('group_size', 'option');
     }
 }
