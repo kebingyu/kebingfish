@@ -16,7 +16,7 @@ class CreateSignupLocationsTable extends Migration
         Schema::create('signup_locations', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name', 255)->unique();
-            $table->json('data');
+            $table->string('data');
             $table->timestamps();
         });
     }
