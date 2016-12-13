@@ -1,4 +1,4 @@
-<div class="col-md-offset-3 col-md-6">
+<div class="col-md-offset-2 col-md-8">
     <div class="alert alert-info">
         <div class="form-title">Edit this event</div>
         <form class="form-horizontal update-event" method="PATCH" action="{{ $url }}" accept-charset="UTF-8">

@@ -1,4 +1,4 @@
-<div class="col-md-offset-3 col-md-6">
+<div class="col-md-offset-2 col-md-8">
     <div class="alert alert-info">
         <div class="form-title">Create a new event!</div>
         <form class="form-horizontal create-event" method="POST" action="{{ $url }}" accept-charset="UTF-8">
