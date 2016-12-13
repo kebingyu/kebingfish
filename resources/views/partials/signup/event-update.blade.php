@@ -2,6 +2,7 @@
     <div class="alert alert-info">
         <div class="form-title">Edit this event</div>
         <form class="form-horizontal update-event" method="PATCH" action="{{ $url }}" accept-charset="UTF-8">
+          {{ csrf_field() }}
           <div class="form-group create-event-title">
             <label for="title" class="col-sm-3 control-label">Title *</label>
             <div class="col-sm-9">

@@ -13,6 +13,7 @@
     <div class="alert alert-info">
         <div class="form-title">Sign me up!</div>
         <form class="form-horizontal signup" method="POST" action="{{ $url }}" accept-charset="UTF-8">
+          {{ csrf_field() }}
           <div class="form-group">
             <label for="name" class="col-sm-4 control-label">Name *</label>
             <div class="col-sm-8">

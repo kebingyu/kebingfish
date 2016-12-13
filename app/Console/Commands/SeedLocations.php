@@ -13,7 +13,7 @@ class SeedLocations extends Command
      *
      * @var string
      */
-    protected $signature = 'db:seed:signup:locations';
+    protected $signature = 'signup:seed:locations';
 
     /**
      * The console command description.

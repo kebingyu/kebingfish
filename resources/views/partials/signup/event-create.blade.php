@@ -2,6 +2,7 @@
     <div class="alert alert-info">
         <div class="form-title">Create a new event!</div>
         <form class="form-horizontal create-event" method="POST" action="{{ $url }}" accept-charset="UTF-8">
+          {{ csrf_field() }}
           <div class="form-group create-event-title">
             <label for="title" class="col-sm-3 control-label">Title *</label>
             <div class="col-sm-9">

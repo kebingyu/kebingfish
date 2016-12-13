@@ -49,3 +49,16 @@ Route::group(['prefix' => '/signup/locations'], function () {
         'as' => 'signup.location.read',
     ]);
 });
+
+Route::get('/signup/login', [
+    'uses' => 'Signup\SignupAdminController@showLoginForm',
+    'as' => 'signup.admin.login.form',
+]);
+Route::post('/signup/login', [
+    'uses' => 'Signup\SignupAdminController@login',
+    'as' => 'signup.admin.login',
+]);
+Route::post('/signup/logout', [
+    'uses' => 'Signup\SignupAdminController@logout',
+    'as' => 'signup.admin.logout',
+]);
