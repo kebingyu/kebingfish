@@ -11,7 +11,7 @@
         @else
         <div class="panel-footer"># of persons signed up: <strong>{{ $goerCount }}</strong></div>
         @endif
-        <div class="panel-footer">{{ $expire }}</div>
+        <div class="panel-footer">{{ $expire }} ({{ $expiresIn }})</div>
     </div>
     <div class="table-responsive">
         <table class="table table-striped">

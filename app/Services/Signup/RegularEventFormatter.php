@@ -33,6 +33,7 @@ class RegularEventFormatter implements EventFormatter
         return $this->getEventsViewData() + [
             'users' => $this->usersToTableRows($event['id'], $event['users']),
             'expire' => "This event expires on {$expire}",
+            'expiresIn' => $event['expires_in'],
             'location' => $event['location'],
         ];
     }
