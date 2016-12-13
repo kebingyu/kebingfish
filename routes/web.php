@@ -24,6 +24,7 @@ Route::group(['prefix' => '/signup/events'], function () {
     Route::get('/create', [
         'uses' => 'Signup\SignupController@eventCreate',
         'as' => 'signup.event.create',
+        'middleware' => 'auth',
     ]);
     Route::get('/{event}', [
         'uses' => 'Signup\SignupController@eventShow',
@@ -32,6 +33,7 @@ Route::group(['prefix' => '/signup/events'], function () {
     Route::get('/{event}/update', [
         'uses' => 'Signup\SignupController@eventUpdate',
         'as' => 'signup.event.update',
+        'middleware' => 'auth',
     ]);
     Route::get('/{event}/print', [
         'uses' => 'Signup\SignupController@eventPrint',

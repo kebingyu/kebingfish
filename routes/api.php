@@ -34,6 +34,7 @@ Route::group(['prefix' => '/signup.events'], function () {
     Route::delete('/{event}', [
         'uses' => 'Signup\EventController@delete',
         'as' => 'api.signup.event.delete',
+        'middleware' => 'auth',
     ]);
     // Users
     Route::post('/{event}/users', [

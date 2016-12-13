@@ -17,6 +17,7 @@ class SignupLocationController extends Controller
 
     public function __construct(SignupApiClient $client)
     {
+        $this->middleware('auth');
         $this->client = $client;
     }
 
