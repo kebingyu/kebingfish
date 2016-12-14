@@ -80,6 +80,7 @@ class SignupController extends Controller
             'url' => $this->getApiRouteEventUserCreate($event['id']),
             'editUrl' => $this->getWebRouteEventUpdate($event['id']),
             'printUrl' => $this->getWebRouteEventPrint($event['id']),
+            'resetUrl' => $this->getApiRouteEventReset($event['id']),
         ] + EventFormatterFactory::create($event)->getEventViewData());
     }
 

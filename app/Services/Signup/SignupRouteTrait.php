@@ -76,4 +76,9 @@ trait SignupRouteTrait
     {
         return route('api.signup.location.read', ['locationId' => $id]);
     }
+
+    public function getApiRouteEventReset($eventId)
+    {
+        return route('api.signup.event.reset', ['event' => $eventId]);
+    }
 }

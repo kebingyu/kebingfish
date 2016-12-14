@@ -27,6 +27,10 @@ Route::group(['prefix' => '/signup.events'], function () {
         'uses' => 'Signup\EventController@update',
         'as' => 'api.signup.event.update',
     ]);
+    Route::post('/{event}/reset', [
+        'uses' => 'Signup\EventController@reset',
+        'as' => 'api.signup.event.reset',
+    ]);
     Route::post('/', [
         'uses' => 'Signup\EventController@add',
         'as' => 'api.signup.events.create',

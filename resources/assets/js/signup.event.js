@@ -85,12 +85,30 @@ $(document).ready(function () {
         });
     });
 
-    $('.js-event-edit').on('click', function() {
-        window.location = $(this).data('url');
-    });
-
-    $('.js-event-print').on('click', function() {
-        window.location = $(this).data('url');
+    $('.js-event-reset').on('click', function(e) {
+        e.preventDefault();
+        var url = $(this).attr('href');
+        $.ajax({
+            method: 'POST',
+            url: url
+        }).done(function (data) {
+            if (data['ok']) {
+                // Update goer count
+                $('.badge').text(data['data']['goer_count']);
+                // Reset table body
+                $('.table-striped tbody').html('');
+                // Popup message
+                showModal('Event is reset.');
+                return;
+            }
+            // Popup message
+            showModal(data['error'], 'danger');
+        }).fail(function (data) {
+            var error = data.responseJSON;
+            for (var key in error) {
+                showModal(error[key], 'danger');
+            }
+        });
     });
 
     function resetModal() {

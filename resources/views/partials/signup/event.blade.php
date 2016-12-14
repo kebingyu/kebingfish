@@ -2,16 +2,26 @@
     <div class="panel panel-info">
         <div class="panel-heading">
             <h3 class="panel-title">
-                <a href="{{ $printUrl }}">{{ $title }}</a>
+                {{ $title }}
                 <span class="badge goer-count">{{ $goerCount }}</span>
             </h3>
-            @if (!Auth::guest())
-            <span class="glyphicon glyphicon-pencil pull-right js-event-edit" data-url="{{ $editUrl }}"></span>
-            @endif
         </div>
         <div class="panel-body">{!! nl2br(e($description)) !!}</div>
         <div class="panel-footer">
             {{ $expire }} ({{ $expiresIn }})
+        </div>
+        <div class="panel-footer">
+            <a href="{{ $printUrl }}">
+                <button type="button" class="btn btn-info">Print</button>
+            </a>
+            @if (!Auth::guest())
+            <a href="{{ $editUrl }}">
+                <button type="button" class="btn btn-primary">Edit</button>
+            </a>
+            <a href="{{ $resetUrl }}" class="js-event-reset">
+                <button type="button" class="btn btn-danger">Reset</button>
+            </a>
+            @endif
         </div>
     </div>
     <div class="alert alert-info">

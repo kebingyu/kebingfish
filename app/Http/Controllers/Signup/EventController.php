@@ -68,6 +68,14 @@ class EventController extends Controller
         return $this->responseJson($updated, $data);
     }
 
+    public function reset(Request $request, Event $event)
+    {
+        $event->users()->detach();
+        return $this->responseJson(true, [
+            'data' => Event::find($event->id)->toArray(),
+        ]);
+    }
+
     /**
      * Create a new event.
      *
