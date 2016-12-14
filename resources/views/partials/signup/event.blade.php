@@ -19,7 +19,7 @@
                 <button type="button" class="btn btn-primary">Edit</button>
             </a>
             <a href="{{ $resetUrl }}" class="js-event-reset">
-                <button type="button" class="btn btn-danger">Reset</button>
+                <button type="button" class="btn btn-danger pull-right">Reset</button>
             </a>
             @endif
         </div>

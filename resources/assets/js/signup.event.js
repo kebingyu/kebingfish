@@ -85,8 +85,13 @@ $(document).ready(function () {
         });
     });
 
+    // Reset event signup users
     $('.js-event-reset').on('click', function(e) {
         e.preventDefault();
+        var r = confirm('Reset this event? This is IRREVERSIBLE!');
+        if (r == false) {
+            return;
+        }
         var url = $(this).attr('href');
         $.ajax({
             method: 'POST',
