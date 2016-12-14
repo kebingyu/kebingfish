@@ -30,12 +30,8 @@ class OptionEventFormatter extends RegularEventFormatter
 
     public function getEventUpdateViewData(): array
     {
-        $event = $this->event;
-        $expire = Carbon::parse($event['expires_at'])->format('m/d/Y');
-        return $this->getEventsViewData() + [
-            'expire' => $expire,
-            'type' => $event['type'],
-            'location_id' => $event['location']['id'],
-        ];
+        $data = parent::getEventUpdateViewData();
+        $data['location_id'] = $this->event['location']['id'];
+        return $data;
     }
 }

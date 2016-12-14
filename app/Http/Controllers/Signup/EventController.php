@@ -17,10 +17,7 @@ class EventController extends Controller
      */
     public function events()
     {
-        // Only show events not expired
-        $events = Event::with('users')->get()->filter(function ($event) {
-            return Carbon::now()->lte(Carbon::parse($event['expires_at']));
-        });
+        $events = Event::with('users')->get();
         return $this->responseJson(true, [
             'data' => $events->map(function ($event) {
                 return $event->toArray();
@@ -68,6 +65,14 @@ class EventController extends Controller
         return $this->responseJson($updated, $data);
     }
 
+    /**
+     * Reset an event: remove all signup users.
+     *
+     * @param Request $request
+     * @param Event $event
+     *
+     * @return json
+     */
     public function reset(Request $request, Event $event)
     {
         $event->users()->detach();
@@ -94,10 +99,9 @@ class EventController extends Controller
 
     protected function getExpireTimestamp(EventRequest $request)
     {
-        if (!$request->has('expires_at')) {
-            return Carbon::now()->addWeek()->timestamp;
+        if ($request->has('expires_at')) {
+            return Carbon::parse($request->get('expires_at'))->timestamp;
         }
-        return Carbon::parse($request->get('expires_at'))->timestamp;
     }
 
     /**

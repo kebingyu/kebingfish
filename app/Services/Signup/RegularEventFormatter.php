@@ -23,16 +23,15 @@ class RegularEventFormatter implements EventFormatter
             'description' => $this->event['description'],
             'href' => $this->getWebRouteEventRead($this->event['id']),
             'goerCount' => $this->event['goer_count'],
+            'expired' => $this->event['expired'],
         ];
     }
 
     public function getEventViewData(): array
     {
         $event = $this->event;
-        $expire = Carbon::parse($event['expires_at'])->format('l, F d Y');
         return $this->getEventsViewData() + [
             'users' => $this->usersToTableRows($event['id'], $event['users']),
-            'expire' => "This event expires on {$expire}",
             'expiresIn' => $event['expires_in'],
             'location' => $event['location'],
         ];
@@ -60,7 +59,13 @@ class RegularEventFormatter implements EventFormatter
     public function getEventUpdateViewData(): array
     {
         $event = $this->event;
-        $expire = Carbon::parse($event['expires_at'])->format('m/d/Y');
+
+        if ($event['expires_at']) {
+            $expire = Carbon::parse($event['expires_at'])->format('m/d/Y');
+        } else {
+            $expire = '';
+        }
+
         return $this->getEventsViewData() + [
             'expire' => $expire,
             'type' => $event['type'],

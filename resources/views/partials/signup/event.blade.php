@@ -7,9 +7,11 @@
             </h3>
         </div>
         <div class="panel-body">{!! nl2br(e($description)) !!}</div>
+        @if ($expiresIn)
         <div class="panel-footer">
-            {{ $expire }} ({{ $expiresIn }})
+            This event expires in {{ $expiresIn }}
         </div>
+        @endif
         <div class="panel-footer">
             <a href="{{ $printUrl }}">
                 <button type="button" class="btn btn-info">Print</button>

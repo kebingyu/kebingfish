@@ -8,6 +8,8 @@ use App\Services\Signup\SignupRouteTrait;
 use App\Services\Signup\EventFormatterFactory;
 use App\Models\Signup\Event;
 use Illuminate\Http\Request;
+use Illuminate\Contracts\Auth\Guard;
+use Illuminate\Auth\AuthenticationException;
 use Carbon\Carbon;
 
 class SignupController extends Controller
@@ -17,9 +19,13 @@ class SignupController extends Controller
     /* @var SignupApiClient */
     protected $client;
 
-    public function __construct(SignupApiClient $client)
+    /* @var Guard */
+    protected $guard;
+
+    public function __construct(SignupApiClient $client, Guard $guard)
     {
         $this->client = $client;
+        $this->guard = $guard;
     }
 
     /**
@@ -31,7 +37,7 @@ class SignupController extends Controller
     {
         $events = array_map(function ($event) {
             return EventFormatterFactory::create($event)->getEventsViewData();
-        }, $this->client->getEvents());
+        }, $this->filterEvents($this->client->getEvents()));
 
         return view('signup/events', [
             'pageTitle' => 'All Events',
@@ -57,14 +63,6 @@ class SignupController extends Controller
         ]);
     }
 
-    private function getLocations($type)
-    {
-        if ($type == 2) {
-            return $this->client->getLocations();
-        }
-        return [];
-    }
-
     /**
      * Show one event and signup users.
      *
@@ -73,6 +71,9 @@ class SignupController extends Controller
      */
     public function eventShow(Request $request, Event $event)
     {
+        if (!$this->canViewEvent($event['expires_at'])) {
+            throw new AuthenticationException();
+        }
         $event = $event->toArray();
 
         return view('signup/event', [
@@ -92,6 +93,9 @@ class SignupController extends Controller
      */
     public function eventPrint(Request $request, Event $event)
     {
+        if (!$this->canViewEvent($event['expires_at'])) {
+            throw new AuthenticationException();
+        }
         $event = $event->toArray();
 
         return view('signup/event-print', [
@@ -116,5 +120,33 @@ class SignupController extends Controller
             'successUrl' => $this->getWebRouteEventRead($event['id']),
             'locations' => $this->getLocations($event['type']),
         ] + EventFormatterFactory::create($event)->getEventUpdateViewData());
+    }
+
+    protected function getLocations($type)
+    {
+        if ($type == 2) {
+            return $this->client->getLocations();
+        }
+        return [];
+    }
+
+    protected function filterEvents(array $events)
+    {
+        return array_filter($events, function ($event) {
+            return $this->canViewEvent($event['expires_at']);
+        });
+    }
+
+    protected function canViewEvent($expires_at)
+    {
+        return $this->guard->check() || !$this->eventExpired($expires_at);
+    }
+
+    protected function eventExpired($expires_at)
+    {
+        if ($expires_at) {
+            return Carbon::now()->gt(Carbon::parse($expires_at));
+        }
+        return false;
     }
 }

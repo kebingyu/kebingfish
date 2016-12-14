@@ -33,10 +33,27 @@ class Event extends Model
     public function toArray()
     {
         return parent::toArray() + [
-                'expires_in' => Carbon::parse($this->expires_at)->diffForHumans(),
+                'expires_in' => $this->getExpiresIn(),
+                'expired' => $this->expired(),
                 'goer_count' => $this->getGoerCount(),
                 'location' => $this->location ? $this->location->toArray() : [],
             ];
+    }
+
+    public function expired()
+    {
+        if ($this->expires_at) {
+            return Carbon::now()->gt(Carbon::parse($this->expires_at));
+        }
+        return false;
+    }
+
+    protected function getExpiresIn()
+    {
+        if ($this->expires_at) {
+            return Carbon::parse($this->expires_at)->diffForHumans();
+        }
+        return false;
     }
 
     protected function getGoerCount()
