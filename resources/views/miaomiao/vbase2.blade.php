@@ -10,6 +10,7 @@
         </div>
       </div>
       <form class="navbar-form" method="post" action="{{ route('miaomiao.vbase2.post') }}" enctype="multipart/form-data">
+        {{ csrf_field() }}
         <div class="row">
           <div class="col-md-3 col-md-offset-2">
             <div class="panel panel-primary">

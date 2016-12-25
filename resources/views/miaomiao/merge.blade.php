@@ -12,6 +12,7 @@
       <div class="row">
         <div class="col-md-4 col-md-offset-4">
           <form class="navbar-form" method="post" action="{{ route('miaomiao.merge.post') }}" enctype="multipart/form-data">
+            {{ csrf_field() }}
             <div class="panel panel-primary">
               <div class="panel-heading">Step 1: Select your files</div>
               <div class="panel-body">
