@@ -64,3 +64,26 @@ Route::post('/signup/logout', [
     'uses' => 'Signup\SignupAdminController@logout',
     'as' => 'signup.admin.logout',
 ]);
+
+Route::group(['prefix' => '/miaomiao'], function () {
+    Route::get('/', [
+        'uses' => 'Miaomiao\HomeController@index',
+        'as' => 'miaomiao.home',
+    ]);
+    Route::get('/merge', [
+        'uses' => 'Miaomiao\MergeController@index',
+        'as' => 'miaomiao.merge.get',
+    ]);
+    Route::post('/merge', [
+        'uses' => 'Miaomiao\MergeController@merge',
+        'as' => 'miaomiao.merge.post',
+    ]);
+    Route::get('/vbase2', [
+        'uses' => 'Miaomiao\VBase2Controller@index',
+        'as' => 'miaomiao.vbase2.get',
+    ]);
+    Route::post('/vbase2', [
+        'uses' => 'Miaomiao\VBase2Controller@submit',
+        'as' => 'miaomiao.vbase2.post',
+    ]);
+});

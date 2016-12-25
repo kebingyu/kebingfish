@@ -1,0 +1,108 @@
+@import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
+html, body {
+    background-color: #fff;
+    color: #636b6f;
+    font-family: 'Raleway';
+    font-weight: 100;
+    height: 100vh;
+    margin: 0;
+    background-size: cover;
+}
+
+body.home {
+    background-image: url('/images/genetics.jpg');
+}
+
+body.merge {
+    background-image: url('/images/merge_bg.jpg');
+}
+
+body.vbase2 {
+    background-image: url('/images/dnaplot.jpg');
+}
+
+.full-height {
+    height: 100vh;
+}
+
+.flex-center {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.position-ref {
+    position: relative;
+}
+
+.top-right {
+    position: absolute;
+    right: 10px;
+    top: 18px;
+}
+
+.content {
+    position: absolute;
+    top: 50px;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+}
+
+.header {
+    font-size: 24px;
+    margin: 20px 0 30px 0;
+}
+
+.title {
+    font-size: 84px;
+}
+
+.title__home {
+    position: fixed;
+    bottom: 10px;
+    left: 30px;
+    color: #f0d9ee;
+}
+
+.links > a {
+    color: #636b6f;
+    padding: 0 25px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: .1rem;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.m-b-md {
+    margin-bottom: 30px;
+}
+
+#js-merge-files {
+    margin-top: 8px;
+}
+
+.marginzero {
+    margin-bottom: 0;
+    border-bottom-width: 0;
+}
+
+.js-merge-files-li:hover {
+    background-color: #eee;
+}
+
+.vbase2 .or {
+    font-size: 40px;
+    position: relative;
+    top: 30px;
+}
+
+.row__space {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.noshow {
+    display: none;
+}
