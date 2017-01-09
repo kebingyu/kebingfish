@@ -87,3 +87,14 @@ Route::group(['prefix' => '/miaomiao'], function () {
         'as' => 'miaomiao.vbase2.post',
     ]);
 });
+
+Route::group(['prefix' => '/oxford'], function () {
+    Route::get('/', [
+        'uses' => 'Oxford\HomeController@index',
+        'as' => 'oxford.home',
+    ]);
+    Route::post('/', [
+        'uses' => 'Oxford\HomeController@search',
+        'as' => 'oxford.search',
+    ]);
+});
