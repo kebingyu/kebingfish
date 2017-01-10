@@ -21,15 +21,15 @@ $(function() {
     function buildDefinition(data)
     {
         var div = $('.definitions');
-        var html = '<ol>';
+        var html = '<ul>';
         for (var i = 0; i < data.length; i++) {
-            html += '<li><p>' + data[i].definition + '</p>';
+            html += '<li><p class="definition">' + data[i].definition + '</p>';
             for (var j = 0; j < data[i].examples.length; j++) {
-                html += '<p>' + data[i].examples[j] + '</p>';
+                html += '<p class="example">' + data[i].examples[j] + '</p>';
             }
             html += '</li>';
         }
-        html += '</ol>';
+        html += '</ul>';
         div.append(html);
     }
 

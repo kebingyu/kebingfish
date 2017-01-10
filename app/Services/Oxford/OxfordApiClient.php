@@ -53,7 +53,7 @@ class OxfordApiClient
         $examples = [];
         if (isset($sense['examples'])) {
             foreach ($sense['examples'] as $example) {
-                $examples[] = $example['text'];
+                $examples[] = "\"{$example['text']}\"";
             }
         }
         return new Sense($definition, $examples);

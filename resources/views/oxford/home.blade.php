@@ -8,23 +8,19 @@
     <title>Oxford Dictionary</title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="/css/oxford.css">
   </head>
   <body>
     <div class="col-md-offset-3 col-md-6">
       <div class="alert alert-info">
         <form class="form-horizontal" method="POST" action="/oxford" accept-charset="UTF-8">
           {{ csrf_field() }}
-          <div class="form-group">
-            <label for="word_id" class="col-sm-3 control-label">Word</label>
-            <div class="col-sm-9">
-              <input type="text" class="form-control" aria-label="word" name="word_id">
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Search for..." name="word_id">
+              <span class="input-group-btn">
+                <button class="btn btn-default" type="button">Go!</button>
+              </span>
             </div>
-          </div>
-          <div class="form-group">
-            <div class="col-sm-offset-3 col-sm-9">
-              <button type="submit" class="btn btn-primary">Search</button>
-            </div>
-          </div>
         </form>
       </div>
       <div class="definitions">
