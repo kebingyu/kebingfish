@@ -1,6 +1,6 @@
 $(document).ready(function () {
     // Remove user from signup list
-    $('.table-striped').on('click', '.user-name', function (e) {
+    $('.table-striped').on('click', 'td.user-name', function (e) {
         e.preventDefault();
         var self = $(this);
         var name = self.find('a').text();

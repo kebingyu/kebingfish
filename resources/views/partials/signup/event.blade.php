@@ -31,7 +31,7 @@
         <form class="form-horizontal signup" method="POST" action="{{ $url }}" accept-charset="UTF-8">
           {{ csrf_field() }}
           <div class="form-group">
-            <label for="name" class="col-sm-4 control-label">Name *</label>
+            <label for="name" class="col-sm-4 control-label">Name (support Chinese) *</label>
             <div class="col-sm-8">
               <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name...">
             </div>
