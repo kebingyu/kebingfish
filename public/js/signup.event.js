@@ -1,1 +1,132 @@
-$(document).ready(function(){function e(){$("#signup-message").find(".text-success").html("").end().find(".text-danger").html("")}function t(e,t){var t=t||"success",r=".text-"+t;$("#signup-message").find(r).html(e).end().modal()}$(".table-striped").on("click",".user-name",function(r){r.preventDefault();var n=$(this),a=n.find("a").text();confirm("Remove "+a+" from this event?")&&$.ajax({url:n.find("a").attr("href"),method:"DELETE",beforeSend:function(){e()}}).done(function(e){return e.ok?($(".badge").text(e.data.goer_count),n.parent().fadeOut(300,function(){$(this).remove()}),void t(a+"'s group has been removed.")):void t(e.error,"danger")})}),$("form.signup").submit(function(r){r.preventDefault();var n=$(this),a=n.attr("action");$.ajax({method:n.attr("method"),url:a,data:n.serialize(),beforeSend:function(){var t=n.find(".has-error");t.find(".error-block").html(""),t.removeClass("has-error"),e()}}).done(function(e){if(e.ok){var r=$(".table-striped tbody");$(".badge").text(e.data.goer_count);var o=n.find('input[name="name"]').val(),i=n.find('input[name="group_size"]').val()||1,d='<tr><td class="user-name"><a href="'+a+"/"+o+'">'+o+'</a></td><td class="user-group-size">'+i+"</td>";if($("th.user-option").length>0){var s=n.find('select[name="option"]').val();d+='<td class="user-option">'+s+"</td>"}return d+="</tr>",r.append(d),void t(o+"'s group has been added.")}t(e.error,"danger")}).fail(function(e){var t=e.responseJSON;for(var r in t){for(var n=$('input[name="'+r+'"]').parents(".form-group"),a=n.find(".error-block"),o=0,i=t[r].length;o<i;o++){var d='<li class="text-danger">'+t[r][o]+"</li>";a.append(d)}n.addClass("has-error")}})}),$(".js-event-reset").on("click",function(e){e.preventDefault();var r=confirm("Reset this event? This is IRREVERSIBLE!");if(0!=r){var n=$(this).attr("href");$.ajax({method:"POST",url:n}).done(function(e){return e.ok?($(".badge").text(e.data.goer_count),$(".table-striped tbody").html(""),void t("Event is reset.")):void t(e.error,"danger")}).fail(function(e){var r=e.responseJSON;for(var n in r)t(r[n],"danger")})}})});
+$(document).ready(function () {
+    // Remove user from signup list
+    $('.table-striped').on('click', 'td.user-name', function (e) {
+        e.preventDefault();
+        var self = $(this);
+        var name = self.find('a').text();
+        if (!confirm('Remove ' + name + ' from this event?')) {
+            return;
+        }
+        $.ajax({
+            url: self.find('a').attr('href'),
+            method: "DELETE",
+            beforeSend: function () {
+                resetModal();
+            }
+        }).done(function (data) {
+            if (data['ok']) {
+                // Update goer count
+                $('.badge').text(data['data']['goer_count']);
+                // Remove table row
+                self.parent().fadeOut(300, function() {
+                    $(this).remove();
+                });
+                // Popup message
+                showModal(name + '\'s group has been removed.');
+                return;
+            }
+            // Popup message
+            showModal(data['error'], 'danger');
+        });
+    });
+
+    // Add user from signup list
+    $('form.signup').submit(function (e) {
+        e.preventDefault();
+        var self = $(this);
+        var url = self.attr('action');
+        $.ajax({
+            method: self.attr('method'),
+            url: url,
+            data: self.serialize(),
+            beforeSend: function () {
+                // Clear validation error
+                var div = self.find('.has-error');
+                div.find('.error-block').html('');
+                div.removeClass('has-error');
+                resetModal();
+            }
+        }).done(function (data) {
+            if (data['ok']) {
+                var elem = $('.table-striped tbody');
+                // Update goer count
+                $('.badge').text(data['data']['goer_count']);
+                // Append table row
+                var name = self.find('input[name="name"]').val();
+                var size = self.find('input[name="group_size"]').val() || 1;
+                var html = '<tr>'
+                    + '<td class="user-name">'
+                    + '<a href="' + url + '/' + name + '">' + name + '</a>'
+                    + '</td>'
+                    + '<td class="user-group-size">' + size + '</td>';
+                if ($('th.user-option').length > 0) {
+                    var option = self.find('select[name="option"]').val();
+                    html += '<td class="user-option">' + option + '</td>';
+                }
+                html += '</tr>';
+                elem.append(html);
+                // Popup message
+                showModal(name + '\'s group has been added.');
+                return;
+            }
+            // Popup message
+            showModal(data['error'], 'danger');
+        }).fail(function (data) {
+            var error = data.responseJSON;
+            for (var key in error) {
+                var div = $('input[name="' + key + '"]').parents('.form-group');
+                var ul = div.find('.error-block');
+                for (var i = 0, j = error[key].length; i < j; i++) {
+                    var html = '<li class="text-danger">' + error[key][i] + '</li>';
+                    ul.append(html);
+                }
+                div.addClass('has-error');
+            }
+        });
+    });
+
+    // Reset event signup users
+    $('.js-event-reset').on('click', function(e) {
+        e.preventDefault();
+        var r = confirm('Reset this event? This is IRREVERSIBLE!');
+        if (r == false) {
+            return;
+        }
+        var url = $(this).attr('href');
+        $.ajax({
+            method: 'POST',
+            url: url
+        }).done(function (data) {
+            if (data['ok']) {
+                // Update goer count
+                $('.badge').text(data['data']['goer_count']);
+                // Reset table body
+                $('.table-striped tbody').html('');
+                // Popup message
+                showModal('Event is reset.');
+                return;
+            }
+            // Popup message
+            showModal(data['error'], 'danger');
+        }).fail(function (data) {
+            var error = data.responseJSON;
+            for (var key in error) {
+                showModal(error[key], 'danger');
+            }
+        });
+    });
+
+    function resetModal() {
+        $('#signup-message')
+        .find('.text-success').html('')
+        .end().find('.text-danger').html('');
+    }
+
+    function showModal(message, type) {
+        var type = type || 'success';
+        var elem = '.text-' + type;
+        $('#signup-message').find(elem).html(message).end().modal();
+    }
+});
+
+//# sourceMappingURL=signup.event.js.map

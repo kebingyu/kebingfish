@@ -39,9 +39,10 @@
           </div>
           @endif
           <div class="form-group create-event-expires-at">
-            <label for="expires_at" class="col-sm-3 control-label">Pick a date *</label>
+            <label for="expires_at" class="col-sm-3 control-label">Pick a date</label>
             <div class="col-sm-9">
               <input type="text" class="form-control" id="expires_at" name="expires_at" value="{{ $expire }} ">
+              <p class="help-block">(Leave it blank so the event never expires.)</p>
             </div>
             <div class="col-sm-offset-3 col-sm-9">
                 <ul class="error-block"></ul>
